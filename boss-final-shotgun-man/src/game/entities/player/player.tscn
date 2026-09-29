@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://kwqo8jmxadfb"]
+
+[ext_resource type="Texture2D" uid="uid://0jfy66gbj40e" path="res://assets/texture/player/player.png" id="1_ceb8m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxsxg"]
+radius = 32.0
+height = 68.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1939487036]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85706269]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_rxsxg")
+
+[node name="StateMachine" type="Node" parent="." unique_id=2145513499]
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=247880262]
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1720945492]
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=601166284]
+
+[node name="Dash" type="Node" parent="StateMachine" unique_id=475779271]
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1824326234]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1923079847]
+
+[node name="FloorRaycasts" type="Node2D" parent="." unique_id=294222236]
+
+[node name="RayCast2D1" type="RayCast2D" parent="FloorRaycasts" unique_id=1529722704]
+
+[node name="BodyPivot" type="Node2D" parent="." unique_id=592533833]
+
+[node name="Body" type="Sprite2D" parent="BodyPivot" unique_id=324433989]
+texture = ExtResource("1_ceb8m")
+
+[node name="WeaponPivot" type="Node2D" parent="BodyPivot" unique_id=2052303112]
+
+[node name="WeaponManager" type="Node2D" parent="." unique_id=1061508329]
