@@ -1,40 +1,100 @@
 [gd_scene format=3 uid="uid://kwqo8jmxadfb"]
 
 [ext_resource type="Texture2D" uid="uid://0jfy66gbj40e" path="res://assets/texture/player/player.png" id="1_ceb8m"]
+[ext_resource type="Script" uid="uid://dc2oe3e78mxs2" path="res://src/game/entities/player/Player.gd" id="2_player"]
+[ext_resource type="Script" uid="uid://cjia55u2kakgt" path="res://src/game/entities/player/PlayerStateMachine.gd" id="3_state_machine"]
+[ext_resource type="Script" uid="uid://bpy04480wcqc2" path="res://src/game/entities/player/states/IdleState.gd" id="4_idle"]
+[ext_resource type="Script" uid="uid://ccv3kwpw5m14u" path="res://src/game/entities/player/states/WalkState.gd" id="5_walk"]
+[ext_resource type="Script" uid="uid://b5jqjbaqp7gbb" path="res://src/game/entities/player/states/JumpState.gd" id="6_jump"]
+[ext_resource type="Script" uid="uid://d0f1iv6fcccps" path="res://src/game/entities/player/states/DashState.gd" id="7_dash"]
+[ext_resource type="Script" uid="uid://dti4iwjphm5r1" path="res://src/game/entities/player/states/DeadState.gd" id="8_dead"]
+[ext_resource type="Script" uid="uid://eyylo27dqwyu" path="res://src/game/entities/player/Camera.gd" id="10_ggpiw"]
+[ext_resource type="Script" uid="uid://biyn6ucckyysx" path="res://src/game/entities/player/WeaponManager.gd" id="10_weapon_manager"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxsxg"]
-radius = 32.0
-height = 68.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr6v6"]
+size = Vector2(31, 30)
 
 [node name="Player" type="CharacterBody2D" unique_id=1939487036]
+script = ExtResource("2_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85706269]
-position = Vector2(1, -1)
-shape = SubResource("CapsuleShape2D_rxsxg")
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_nr6v6")
 
-[node name="StateMachine" type="Node" parent="." unique_id=2145513499]
+[node name="StateMachine" type="Node" parent="." unique_id=2145513499 node_paths=PackedStringArray("character", "start_state", "states_list")]
+script = ExtResource("3_state_machine")
+character = NodePath("..")
+start_state = NodePath("Idle")
+states_list = [NodePath("Idle"), NodePath("Walk"), NodePath("Jump"), NodePath("Dash"), NodePath("Dead")]
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=247880262]
+script = ExtResource("4_idle")
+state_id = &"idle"
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1720945492]
+script = ExtResource("5_walk")
+state_id = &"walk"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=601166284]
+script = ExtResource("6_jump")
+state_id = &"jump"
 
 [node name="Dash" type="Node" parent="StateMachine" unique_id=475779271]
+script = ExtResource("7_dash")
+dash_time = 0.2
+speed_multiplier = 3.0
+state_id = &"dash"
+
+[node name="DashCooldown" type="Timer" parent="StateMachine/Dash" unique_id=2010000001]
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1824326234]
+script = ExtResource("8_dead")
+state_id = &"dead"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1923079847]
+[node name="BodyAnimations" type="AnimationPlayer" parent="." unique_id=1923079847]
 
 [node name="FloorRaycasts" type="Node2D" parent="." unique_id=294222236]
 
 [node name="RayCast2D1" type="RayCast2D" parent="FloorRaycasts" unique_id=1529722704]
+enabled = false
+target_position = Vector2(0, 30)
+
+[node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts" unique_id=1343869645]
+position = Vector2(-9, 0)
+enabled = false
+target_position = Vector2(0, 30)
+
+[node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts" unique_id=1783542718]
+position = Vector2(9, 0)
+enabled = false
+target_position = Vector2(0, 30)
 
 [node name="BodyPivot" type="Node2D" parent="." unique_id=592533833]
 
 [node name="Body" type="Sprite2D" parent="BodyPivot" unique_id=324433989]
+unique_name_in_owner = true
+position = Vector2(-9.536743e-07, 0)
+scale = Vector2(0.515625, 0.5)
 texture = ExtResource("1_ceb8m")
 
 [node name="WeaponPivot" type="Node2D" parent="BodyPivot" unique_id=2052303112]
 
 [node name="WeaponManager" type="Node2D" parent="." unique_id=1061508329]
+script = ExtResource("10_weapon_manager")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1257478069 node_paths=PackedStringArray("player")]
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("10_ggpiw")
+player = NodePath("..")
+max_offset_h = 100.0
+max_offset_y = -30.0
+base_offset = Vector2(0, 16)
+offset_speed = 1.5
+min_zoom = Vector2(5, 5)
+max_zoom = Vector2(5, 5)
+zoom_speed = 5.0
+
+[connection signal="timeout" from="StateMachine/Dash/DashCooldown" to="StateMachine/Dash" method="_on_dash_timer_timeout"]

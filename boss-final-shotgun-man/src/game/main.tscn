@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dwrchfd75e7u5"]
+
+[ext_resource type="PackedScene" uid="uid://kwqo8jmxadfb" path="res://src/game/entities/player/player.tscn" id="1_ie5yk"]
+[ext_resource type="PackedScene" uid="uid://cxtmyhlr18fkf" path="res://src/game/environment/floor.tscn" id="1_r3ld0"]
+[ext_resource type="Script" uid="uid://b0ei7pejt02ug" path="res://src/game/MouseCamera.gd" id="3_6afhr"]
+
+[node name="Main" type="Node" unique_id=1547505868]
+
+[node name="GenericFloor" parent="." unique_id=323965155 instance=ExtResource("1_r3ld0")]
+
+[node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
+position = Vector2(55, -16)
+
+[node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
+script = ExtResource("3_6afhr")
