@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://4d5qlgxbf57o"]
+
+[ext_resource type="Texture2D" uid="uid://csijhmyhpqt4s" path="res://assets/texture/player/Robber/PNG/Vector Parts/Melee Weapon.png" id="1_qy3lo"]
+
+[sub_resource type="Animation" id="Animation_qy3lo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordPivot/SwordSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(38.999996, -66.00001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordPivot/SwordSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0665305]
+}
+
+[sub_resource type="Animation" id="Animation_48khy"]
+resource_name = "cut"
+length = 0.8666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordPivot/SwordSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.065, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(38.999996, -66.00001), Vector2(-29.000004, -72), Vector2(77, 0), Vector2(39, 69)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordPivot/SwordSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.065, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.0665305, -1.9216075, 0.0, 1.0925761]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_struk"]
+_data = {
+&"RESET": SubResource("Animation_qy3lo"),
+&"cut": SubResource("Animation_48khy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f2lw"]
+size = Vector2(132.25, 188)
+
+[node name="SwordWeapon" type="Node2D" unique_id=1922192132]
+
+[node name="AttacksAnim" type="AnimationPlayer" parent="." unique_id=1941323864]
+libraries/ = SubResource("AnimationLibrary_struk")
+
+[node name="SwordPivot" type="Node2D" parent="." unique_id=870246888]
+
+[node name="SwordSprite" type="Sprite2D" parent="SwordPivot" unique_id=1472603378]
+position = Vector2(38.999996, -66.00001)
+rotation = -1.0665305
+texture = ExtResource("1_qy3lo")
+
+[node name="Fx" type="Sprite2D" parent="SwordPivot" unique_id=1362866312]
+
+[node name="CutArea" type="Area2D" parent="SwordPivot" unique_id=801427334]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/CutArea" unique_id=25902780]
+position = Vector2(65.875, -33)
+shape = SubResource("RectangleShape2D_5f2lw")

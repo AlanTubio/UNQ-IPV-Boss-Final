@@ -46,6 +46,7 @@ speed_multiplier = 3.0
 state_id = &"dash"
 
 [node name="DashCooldown" type="Timer" parent="StateMachine/Dash" unique_id=2010000001]
+one_shot = true
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1824326234]
 script = ExtResource("8_dead")
@@ -96,5 +97,3 @@ offset_speed = 1.5
 min_zoom = Vector2(5, 5)
 max_zoom = Vector2(5, 5)
 zoom_speed = 5.0
-
-[connection signal="timeout" from="StateMachine/Dash/DashCooldown" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
