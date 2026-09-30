@@ -62,14 +62,7 @@ func _ready() -> void:
 func initialize(_projectile_container: Node = get_parent()) -> void:
 	self.projectile_container = _projectile_container
 	weapon_manager.projectile_container = projectile_container
-	for weapon_scene in GameState.weapons_stash:
-		add_weapon(weapon_scene)
 	GameState.set_current_player(self)
-
-
-# Interfaz para agregar un arma nueva, delega al WeaponManager.
-func add_weapon(weapon_scene: PackedScene) -> void:
-	weapon_manager.add_weapon(weapon_scene)
 
 
 # El único elemento que queda abstraer de esta función

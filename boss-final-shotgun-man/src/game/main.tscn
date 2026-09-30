@@ -7,9 +7,10 @@
 [node name="Main" type="Node" unique_id=1547505868]
 
 [node name="GenericFloor" parent="." unique_id=323965155 instance=ExtResource("1_r3ld0")]
+rotation = -0.010777829
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
-position = Vector2(55, -16)
+position = Vector2(54, 0)
 
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")

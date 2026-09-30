@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dti4iwjphm5r1" path="res://src/game/entities/player/states/DeadState.gd" id="8_dead"]
 [ext_resource type="Script" uid="uid://eyylo27dqwyu" path="res://src/game/entities/player/Camera.gd" id="10_ggpiw"]
 [ext_resource type="Script" uid="uid://biyn6ucckyysx" path="res://src/game/entities/player/WeaponManager.gd" id="10_weapon_manager"]
+[ext_resource type="PackedScene" uid="uid://4d5qlgxbf57o" path="res://src/game/entities/player/weapons/sword_weapon.tscn" id="11_initial_weapon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr6v6"]
 size = Vector2(31, 30)
@@ -18,7 +19,7 @@ size = Vector2(31, 30)
 script = ExtResource("2_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85706269]
-position = Vector2(0.5, 0)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_nr6v6")
 
 [node name="StateMachine" type="Node" parent="." unique_id=2145513499 node_paths=PackedStringArray("character", "start_state", "states_list")]
@@ -74,7 +75,7 @@ target_position = Vector2(0, 30)
 
 [node name="Body" type="Sprite2D" parent="BodyPivot" unique_id=324433989]
 unique_name_in_owner = true
-position = Vector2(-9.536743e-07, 0)
+position = Vector2(0, -16)
 scale = Vector2(0.515625, 0.5)
 texture = ExtResource("1_ceb8m")
 
@@ -82,6 +83,7 @@ texture = ExtResource("1_ceb8m")
 
 [node name="WeaponManager" type="Node2D" parent="." unique_id=1061508329]
 script = ExtResource("10_weapon_manager")
+initial_weapon = ExtResource("11_initial_weapon")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1257478069 node_paths=PackedStringArray("player")]
 drag_left_margin = 0.0
