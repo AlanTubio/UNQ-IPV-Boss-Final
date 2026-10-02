@@ -6,6 +6,8 @@ extends Node2D
 ## El patrón usado es un State Machine, siendo el Manager la
 ## Máquina de Estados y las armas los States.
 
+signal wall_hit()
+
 var projectile_container: Node: set = _set_projectile_container
 
 @export var initial_weapon: PackedScene
@@ -27,6 +29,8 @@ func _add_weapon(weapon_scene: PackedScene) -> void:
 	add_child(weapon)
 	weapons_list.push_back(weapon)
 	weapon.projectile_container = projectile_container
+	if weapon.has_signal("wall_hit"):
+		weapon.connect("wall_hit", func(): wall_hit.emit())
 	if current_weapon == null:
 		_set_weapon_as_current(weapon)
 	else:

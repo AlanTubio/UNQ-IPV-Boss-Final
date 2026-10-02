@@ -1,11 +1,16 @@
 extends AbstractWeapon
 
+## Señal emitida cuando la espada impacta contra una pared
+signal wall_hit()
+
 @onready var attacks_anim: AnimationPlayer = $AttacksAnim
 @onready var sword_pivot: Node2D = $SwordPivot
+@onready var cut_area: Area2D = $SwordPivot/CutArea
 
 
 func _ready() -> void:
 	attacks_anim.animation_finished.connect(_on_attacks_anim_animation_finished)
+	cut_area.body_entered.connect(_on_cut_area_body_entered)
 
 
 func enter() -> void:
@@ -36,3 +41,8 @@ func update_weapon(_delta: float, _character: Node, can_attack: bool = true) -> 
 
 func _on_attacks_anim_animation_finished(_animation_name: StringName) -> void:
 	attacks_anim.play(&"RESET")
+
+
+func _on_cut_area_body_entered(body: Node) -> void:
+	if body.get_collision_layer_value(2):
+		wall_hit.emit()

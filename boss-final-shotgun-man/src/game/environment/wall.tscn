@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cwallenv0001"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(32, 524)
+
+[node name="GenericWall" type="StaticBody2D" unique_id=884729102]
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=884729103]
+position = Vector2(16, -262)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Surface" type="Polygon2D" parent="." unique_id=884729104]
+position = Vector2(1, 0)
+scale = Vector2(0.96875, 2.1171875)
+color = Color(0.35, 0.25, 0.2, 1)
+polygon = PackedVector2Array(-1.032258, -247.02583, 32, -247.02583, 32, -128, 32, 0, 0, 0)
+
+[node name="SideEdge" type="Polygon2D" parent="." unique_id=884729105]
+color = Color(0.65, 0.45, 0.3, 1)
+polygon = PackedVector2Array(1, -524, 4, -524, 4, -128, 4, 0, 0, 0)

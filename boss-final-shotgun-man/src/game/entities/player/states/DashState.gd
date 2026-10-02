@@ -21,16 +21,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
     var time_left: float = dash_cooldown_timer.time_left
-    print(time_left);
     character.body.self_modulate = lerp(Color.WHITE, dash_cooldown_color, time_left / dash_cooldown)
     if time_left == 0:
         set_process(false)
-    
-    
 
 
 func enter() -> void:
-    print("Entering DashState")
     if !dash_cooldown_timer.is_stopped() || character.stamina < dash_stamina_cost:
         finished.emit(&"walk")
     else:

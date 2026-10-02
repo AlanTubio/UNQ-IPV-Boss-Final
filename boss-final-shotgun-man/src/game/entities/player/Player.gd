@@ -19,6 +19,8 @@ signal stamina_changed(current_stamina, max_stamina)
 ## Señal emitida al morir
 @warning_ignore("unused_signal")
 signal died()
+## Señal emitida al golpear una pared con un arma
+signal wall_hit()
 
 @onready var weapon_manager: Node = $WeaponManager
 @onready var body_animations: AnimationPlayer = $BodyAnimations
@@ -55,8 +57,12 @@ var h_movement_direction: int = 0
 var dead: bool = false
 
 
+
+
 func _ready() -> void:
 	initialize()
+	if weapon_manager and weapon_manager.has_signal("wall_hit"):
+		weapon_manager.wall_hit.connect(func(): wall_hit.emit())
 
 
 func initialize(_projectile_container: Node = get_parent()) -> void:
@@ -108,6 +114,7 @@ func _handle_deacceleration(delta: float) -> void:
 
 
 # Se extrae el comportamiento de la aplicación de gravedad y movimiento
+
 # a una función para ser llamada apropiadamente desde cada state
 func _apply_movement(delta: float) -> void:
 	# Gravity

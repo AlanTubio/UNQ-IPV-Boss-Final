@@ -16,6 +16,7 @@
 size = Vector2(31, 30)
 
 [node name="Player" type="CharacterBody2D" unique_id=1939487036]
+collision_mask = 3
 script = ExtResource("2_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85706269]
@@ -39,6 +40,10 @@ state_id = &"walk"
 [node name="Jump" type="Node" parent="StateMachine" unique_id=601166284]
 script = ExtResource("6_jump")
 state_id = &"jump"
+
+[node name="WallTimer" type="Timer" parent="StateMachine/Jump" unique_id=65058464]
+wait_time = 0.2
+one_shot = true
 
 [node name="Dash" type="Node" parent="StateMachine" unique_id=475779271]
 script = ExtResource("7_dash")
@@ -99,3 +104,5 @@ offset_speed = 1.5
 min_zoom = Vector2(5, 5)
 max_zoom = Vector2(5, 5)
 zoom_speed = 5.0
+
+[connection signal="timeout" from="StateMachine/Jump/WallTimer" to="StateMachine/Jump" method="_on_wall_timer_timeout"]

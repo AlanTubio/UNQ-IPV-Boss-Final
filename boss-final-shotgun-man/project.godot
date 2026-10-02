@@ -69,6 +69,11 @@ weapon_next={
 
 3d/physics_engine="Jolt Physics"
 
+[layer_names]
+
+2d_physics/layer_1="Floor"
+2d_physics/layer_2="Wall"
+
 [rendering]
 
 rendering_device/driver.windows="d3d12"

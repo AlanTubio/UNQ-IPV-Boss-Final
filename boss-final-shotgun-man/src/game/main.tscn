@@ -2,12 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://kwqo8jmxadfb" path="res://src/game/entities/player/player.tscn" id="1_ie5yk"]
 [ext_resource type="PackedScene" uid="uid://cxtmyhlr18fkf" path="res://src/game/environment/floor.tscn" id="1_r3ld0"]
+[ext_resource type="PackedScene" uid="uid://cwallenv0001" path="res://src/game/environment/wall.tscn" id="2_wall"]
 [ext_resource type="Script" uid="uid://b0ei7pejt02ug" path="res://src/game/MouseCamera.gd" id="3_6afhr"]
 
 [node name="Main" type="Node" unique_id=1547505868]
 
 [node name="GenericFloor" parent="." unique_id=323965155 instance=ExtResource("1_r3ld0")]
 rotation = -0.010777829
+
+[node name="GenericWall" parent="." unique_id=884729102 instance=ExtResource("2_wall")]
+position = Vector2(180, 0)
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
 position = Vector2(54, 0)
