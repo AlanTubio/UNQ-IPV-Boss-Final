@@ -19,6 +19,8 @@ signal stamina_changed(current_stamina, max_stamina)
 ## Señal emitida al morir
 @warning_ignore("unused_signal")
 signal died()
+## Señal emitida cuando la espada golpea una pared o plataforma
+signal wall_jump()
 
 @onready var weapon_manager: Node = $WeaponManager
 @onready var body_animations: AnimationPlayer = $BodyAnimations
@@ -53,6 +55,10 @@ var h_movement_direction: int = 0
 
 ## Flag de ayuda para saber identificar el estado de actividad
 var dead: bool = false
+
+## Flag de transición parametrizada: indica a JumpState que el salto fue
+## provocado por la espada golpeando una superficie (sin double jump disponible)
+var wall_jump_triggered: bool = false
 
 
 func _ready() -> void:
@@ -147,6 +153,13 @@ func is_on_floor_raycasted() -> bool:
 # los casos de estados en los cuales no se manejan hits
 func notify_hit(amount: int = 1) -> void:
 	hit.emit(amount)
+
+
+# Mismo patrón que notify_hit: emite la señal para que la state machine
+# derive el manejo al estado actual correspondiente
+func do_wall_jump() -> void:
+	print("do_wall_jump() llamado")
+	wall_jump.emit()
 
 
 # Y acá se maneja la salud.

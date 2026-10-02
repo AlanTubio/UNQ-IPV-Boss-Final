@@ -17,6 +17,12 @@ func _setup() -> void:
 		printerr("%s: character is not defined!" % name)
 	for state: PlayerState in states_list:
 		state.character = character
+	# Conectamos la señal wall_jump del character a este manager.
+	# Se hace por código para evitar que Godot elimine la conexión
+	# del .tscn al re-guardar la escena (ocurre cuando el método
+	# no existía al momento de guardar).
+	if not character.wall_jump.is_connected(notify_wall_jump):
+		character.wall_jump.connect(notify_wall_jump)
 
 
 ## Esta función deriva el handleo de cada golpe que recibe
@@ -45,3 +51,7 @@ func notify_mana_changed(current_mana: float, max_mana: float) -> void:
 
 func notify_stamina_changed(current_stamina: float, max_stamina: float) -> void:
 	current_state.handle_event(&"stamina_changed", current_stamina, max_stamina)
+
+func notify_wall_jump() -> void:
+	print("notify_wall_jump() llamado - estado actual: ", current_state.state_id)
+	current_state.handle_event(&"wall_jump")

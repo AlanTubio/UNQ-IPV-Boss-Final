@@ -54,3 +54,6 @@ func handle_event(event: StringName, ...values: Array) -> void:
 		&"hp_changed":
 			if values.front() == 0:
 				finished.emit(&"dead")
+		&"wall_jump":
+			character.wall_jump_triggered = true
+			finished.emit(&"jump")

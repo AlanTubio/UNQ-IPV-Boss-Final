@@ -65,7 +65,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f2lw"]
-size = Vector2(56.5, 118)
+size = Vector2(53.25, 55)
 
 [node name="SwordWeapon" type="Node2D" unique_id=1922192132]
 script = ExtResource("1_48khy")
@@ -86,5 +86,5 @@ texture = ExtResource("1_qy3lo")
 [node name="CutArea" type="Area2D" parent="SwordPivot" unique_id=801427334]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/CutArea" unique_id=25902780]
-position = Vector2(28, 0)
+position = Vector2(26.375, -31.5)
 shape = SubResource("RectangleShape2D_5f2lw")

@@ -8,6 +8,9 @@ var jumps: int = 0
 func enter() -> void:
     character.velocity.y = -character.jump_speed
     character._play_animation(&"jump")
+    if character.wall_jump_triggered:
+        jumps = jumps_limit
+        character.wall_jump_triggered = false
 
 
 func exit() -> void:
@@ -52,7 +55,10 @@ func handle_event(event: StringName, ...values: Array) -> void:
         &"hp_changed":
             if values.front() == 0:
                 finished.emit(&"dead")
-
+        &"wall_jump":
+            character.velocity.y = -character.jump_speed
+            character._play_animation(&"jump")
+            jumps = jumps_limit
 
 
 func _on_animation_finished(_anim_name: StringName) -> void:
