@@ -15,6 +15,8 @@ extends GenericStateMachine
 func _setup() -> void:
 	if character == null:
 		printerr("%s: character is not defined!" % name)
+	if character and character.has_signal("wall_hit"):
+		character.wall_hit.connect(notify_wall_hit)
 	for state: PlayerState in states_list:
 		state.character = character
 
@@ -45,3 +47,8 @@ func notify_mana_changed(current_mana: float, max_mana: float) -> void:
 
 func notify_stamina_changed(current_stamina: float, max_stamina: float) -> void:
 	current_state.handle_event(&"stamina_changed", current_stamina, max_stamina)
+
+
+func notify_wall_hit() -> void:
+	for state: PlayerState in states_list:
+		state.handle_event(&"wall_hit")

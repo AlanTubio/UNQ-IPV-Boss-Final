@@ -1,25 +1,24 @@
 extends Node2D
 
 ## Manager de las armas actuales del Player. Se encarga de delegar
-## callbacks de update, agregar armas, setear actuales y cambiar entre ellas.
+## callbacks de update, setear el arma actual y cambiar entre ellas.
 
 ## El patrón usado es un State Machine, siendo el Manager la
 ## Máquina de Estados y las armas los States.
 
-var projectile_container: Node : set = _set_projectile_container
+signal wall_hit()
 
-var existing_weapons: Array = []
+var projectile_container: Node: set = _set_projectile_container
+
+@export var initial_weapon: PackedScene
+
 var weapons_list: Array = []
 var current_weapon: AbstractWeapon
 
 
-## Recibe el agregado del arma, revisa que no sea duplicado y
-## realiza la inicialización de manera segura con call_deferred
-func add_weapon(weapon_scene: PackedScene) -> void:
-	if existing_weapons.has(weapon_scene):
-		return
-	existing_weapons.push_back(weapon_scene)
-	_add_weapon.call_deferred(weapon_scene)
+func _ready() -> void:
+	if initial_weapon:
+		_add_weapon.call_deferred(initial_weapon)
 
 
 ## Función que instancia, inicializa y agrega el arma nueva a
@@ -30,6 +29,8 @@ func _add_weapon(weapon_scene: PackedScene) -> void:
 	add_child(weapon)
 	weapons_list.push_back(weapon)
 	weapon.projectile_container = projectile_container
+	if weapon.has_signal("wall_hit"):
+		weapon.connect("wall_hit", func(): wall_hit.emit())
 	if current_weapon == null:
 		_set_weapon_as_current(weapon)
 	else:
@@ -49,10 +50,11 @@ func _set_projectile_container(container: Node) -> void:
 func update_weapon(delta: float, character: Node, can_attack: bool = true) -> void:
 	if current_weapon:
 		current_weapon.update_weapon(delta, character, can_attack)
-		if Input.is_action_just_released(&"weapon_next"):
-			_switch_next_weapon()
-		elif Input.is_action_just_released(&"weapon_prev"):
-			_switch_prev_weapon()
+		if weapons_list.size() > 1:
+			if Input.is_action_just_released(&"weapon_next"):
+				_switch_next_weapon()
+			elif Input.is_action_just_released(&"weapon_prev"):
+				_switch_prev_weapon()
 
 
 ## Switches genéricos de armas para determinar el ID del arma
