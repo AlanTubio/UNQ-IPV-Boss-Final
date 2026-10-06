@@ -10,15 +10,15 @@ signal wall_hit()
 
 var projectile_container: Node: set = _set_projectile_container
 
-@export var initial_weapon: PackedScene
+@export var initial_weapons: Array[PackedScene] = []
 
 var weapons_list: Array = []
 var current_weapon: AbstractWeapon
 
 
 func _ready() -> void:
-	if initial_weapon:
-		_add_weapon.call_deferred(initial_weapon)
+	for weapon_scene: PackedScene in initial_weapons:
+		_add_weapon.call_deferred(weapon_scene)
 
 
 ## Función que instancia, inicializa y agrega el arma nueva a
@@ -53,8 +53,8 @@ func update_weapon(delta: float, character: Node, can_attack: bool = true) -> vo
 		if weapons_list.size() > 1:
 			if Input.is_action_just_released(&"weapon_next"):
 				_switch_next_weapon()
-			elif Input.is_action_just_released(&"weapon_prev"):
-				_switch_prev_weapon()
+			# elif Input.is_action_just_released(&"weapon_prev"):
+			# 	_switch_prev_weapon()
 
 
 ## Switches genéricos de armas para determinar el ID del arma

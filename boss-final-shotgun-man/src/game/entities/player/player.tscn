@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://eyylo27dqwyu" path="res://src/game/entities/player/Camera.gd" id="10_ggpiw"]
 [ext_resource type="Script" uid="uid://biyn6ucckyysx" path="res://src/game/entities/player/WeaponManager.gd" id="10_weapon_manager"]
 [ext_resource type="PackedScene" uid="uid://4d5qlgxbf57o" path="res://src/game/entities/player/weapons/sword_weapon.tscn" id="11_initial_weapon"]
+[ext_resource type="PackedScene" uid="uid://hc82u5xp1ns5" path="res://src/game/entities/player/weapons/shotgun_weapon.tscn" id="12_shotgun_weapon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr6v6"]
 size = Vector2(31, 30)
@@ -88,7 +89,7 @@ texture = ExtResource("1_ceb8m")
 
 [node name="WeaponManager" type="Node2D" parent="." unique_id=1061508329]
 script = ExtResource("10_weapon_manager")
-initial_weapon = ExtResource("11_initial_weapon")
+initial_weapons = [ExtResource("11_initial_weapon"), ExtResource("12_shotgun_weapon")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1257478069 node_paths=PackedStringArray("player")]
 drag_left_margin = 0.0
