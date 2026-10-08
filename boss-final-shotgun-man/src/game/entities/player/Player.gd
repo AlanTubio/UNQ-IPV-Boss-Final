@@ -57,12 +57,9 @@ var h_movement_direction: int = 0
 var dead: bool = false
 
 
-
-
 func _ready() -> void:
 	initialize()
-	if weapon_manager and weapon_manager.has_signal("wall_hit"):
-		weapon_manager.wall_hit.connect(func(): wall_hit.emit())
+	weapon_manager.wall_hit.connect(func(): wall_hit.emit())
 
 
 func initialize(_projectile_container: Node = get_parent()) -> void:
@@ -99,7 +96,7 @@ func _handle_move_input(delta: float) -> void:
 	if h_movement_direction != 0:
 		velocity.x = clamp(
 			velocity.x + (h_movement_direction * acceleration * delta),
-			-h_speed_limit,
+			- h_speed_limit,
 			h_speed_limit
 		)
 		# Giramos el sprite dependiendo de a dónde nos movemos
@@ -130,7 +127,7 @@ func _apply_movement(delta: float) -> void:
 				collision_normal.dot(-velocity.normalized()) > 0.0
 			)
 			collision.get_collider().apply_central_impulse(
-				-collision_normal.slerp(-velocity.normalized(), 0.5) * push_force * velocity_alignment
+				- collision_normal.slerp(-velocity.normalized(), 0.5) * push_force * velocity_alignment
 			)
 	
 	move_and_slide()
@@ -213,7 +210,6 @@ func _update_passive_prop(
 ) -> void:
 	set(property, amount)
 	updated_signal.emit(amount, max_amount)
-
 
 
 # El llamado a remove final

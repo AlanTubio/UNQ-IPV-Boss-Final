@@ -50,5 +50,4 @@ func notify_stamina_changed(current_stamina: float, max_stamina: float) -> void:
 
 
 func notify_wall_hit() -> void:
-	for state: PlayerState in states_list:
-		state.handle_event(&"wall_hit")
+	current_state.handle_event(&"wall_hit")

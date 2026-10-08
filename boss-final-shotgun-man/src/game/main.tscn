@@ -10,8 +10,29 @@
 [node name="GenericFloor" parent="." unique_id=323965155 instance=ExtResource("1_r3ld0")]
 rotation = -0.010777829
 
+[node name="GenericFloor2" parent="." unique_id=399744539 instance=ExtResource("1_r3ld0")]
+position = Vector2(576, -5)
+rotation = -0.010777829
+
+[node name="GenericFloor3" parent="." unique_id=62891541 instance=ExtResource("1_r3ld0")]
+position = Vector2(298, -375)
+rotation = -0.010777829
+
+[node name="GenericFloor4" parent="." unique_id=1836923151 instance=ExtResource("1_r3ld0")]
+position = Vector2(302, -807)
+rotation = -0.010777829
+
 [node name="GenericWall" parent="." unique_id=884729102 instance=ExtResource("2_wall")]
-position = Vector2(180, 0)
+position = Vector2(-1, 1)
+
+[node name="GenericWall2" parent="." unique_id=2135344015 instance=ExtResource("2_wall")]
+position = Vector2(1120, -9)
+
+[node name="GenericWall3" parent="." unique_id=190518242 instance=ExtResource("2_wall")]
+position = Vector2(0, -524)
+
+[node name="GenericWall4" parent="." unique_id=2002483971 instance=ExtResource("2_wall")]
+position = Vector2(1121, -535)
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
 position = Vector2(54, 0)

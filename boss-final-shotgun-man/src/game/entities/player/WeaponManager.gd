@@ -53,8 +53,6 @@ func update_weapon(delta: float, character: Node, can_attack: bool = true) -> vo
 		if weapons_list.size() > 1:
 			if Input.is_action_just_released(&"weapon_next"):
 				_switch_next_weapon()
-			# elif Input.is_action_just_released(&"weapon_prev"):
-			# 	_switch_prev_weapon()
 
 
 ## Switches genéricos de armas para determinar el ID del arma
@@ -66,11 +64,11 @@ func _switch_next_weapon() -> void:
 		_set_weapon_as_current(weapons_list[next])
 
 
-func _switch_prev_weapon() -> void:
-	if weapons_list.size() > 1:
-		var current: int = weapons_list.find(current_weapon)
-		var next: int = (current - 1 + (weapons_list.size() * int(current == 0))) % weapons_list.size()
-		_set_weapon_as_current(weapons_list[next])
+# func _switch_prev_weapon() -> void:
+# 	if weapons_list.size() > 1:
+# 		var current: int = weapons_list.find(current_weapon)
+# 		var next: int = (current - 1 + (weapons_list.size() * int(current == 0))) % weapons_list.size()
+# 		_set_weapon_as_current(weapons_list[next])
 
 
 ## Función que setea el arma actual. Observar la implementación

@@ -1,6 +1,5 @@
 extends AbstractWeapon
 
-## Señal emitida cuando la espada impacta contra una pared
 signal wall_hit()
 
 @onready var attacks_anim: AnimationPlayer = $AttacksAnim

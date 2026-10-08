@@ -89,7 +89,7 @@ texture = ExtResource("1_ceb8m")
 
 [node name="WeaponManager" type="Node2D" parent="." unique_id=1061508329]
 script = ExtResource("10_weapon_manager")
-initial_weapons = [ExtResource("11_initial_weapon"), ExtResource("12_shotgun_weapon")]
+initial_weapons = Array[PackedScene]([ExtResource("11_initial_weapon"), ExtResource("12_shotgun_weapon")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1257478069 node_paths=PackedStringArray("player")]
 drag_left_margin = 0.0
