@@ -1,41 +1,15 @@
 [gd_scene format=3 uid="uid://dwrchfd75e7u5"]
 
+[ext_resource type="PackedScene" uid="uid://bsh2oly3ys3vu" path="res://src/game/environment/world.tscn" id="1_6afhr"]
 [ext_resource type="PackedScene" uid="uid://kwqo8jmxadfb" path="res://src/game/entities/player/player.tscn" id="1_ie5yk"]
-[ext_resource type="PackedScene" uid="uid://cxtmyhlr18fkf" path="res://src/game/environment/floor.tscn" id="1_r3ld0"]
-[ext_resource type="PackedScene" uid="uid://cwallenv0001" path="res://src/game/environment/wall.tscn" id="2_wall"]
 [ext_resource type="Script" uid="uid://b0ei7pejt02ug" path="res://src/game/MouseCamera.gd" id="3_6afhr"]
 
 [node name="Main" type="Node" unique_id=1547505868]
 
-[node name="GenericFloor" parent="." unique_id=323965155 instance=ExtResource("1_r3ld0")]
-rotation = -0.010777829
-
-[node name="GenericFloor2" parent="." unique_id=399744539 instance=ExtResource("1_r3ld0")]
-position = Vector2(576, -5)
-rotation = -0.010777829
-
-[node name="GenericFloor3" parent="." unique_id=62891541 instance=ExtResource("1_r3ld0")]
-position = Vector2(298, -375)
-rotation = -0.010777829
-
-[node name="GenericFloor4" parent="." unique_id=1836923151 instance=ExtResource("1_r3ld0")]
-position = Vector2(302, -807)
-rotation = -0.010777829
-
-[node name="GenericWall" parent="." unique_id=884729102 instance=ExtResource("2_wall")]
-position = Vector2(-1, 1)
-
-[node name="GenericWall2" parent="." unique_id=2135344015 instance=ExtResource("2_wall")]
-position = Vector2(1120, -9)
-
-[node name="GenericWall3" parent="." unique_id=190518242 instance=ExtResource("2_wall")]
-position = Vector2(0, -524)
-
-[node name="GenericWall4" parent="." unique_id=2002483971 instance=ExtResource("2_wall")]
-position = Vector2(1121, -535)
+[node name="World" parent="." unique_id=319541539 instance=ExtResource("1_6afhr")]
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
-position = Vector2(54, 0)
+position = Vector2(50, -38)
 
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")

@@ -43,5 +43,5 @@ func _on_attacks_anim_animation_finished(_animation_name: StringName) -> void:
 
 
 func _on_cut_area_body_entered(body: Node) -> void:
-	if body.get_collision_layer_value(2):
+	if body.tile_set.get_physics_layer_collision_layer(0):
 		wall_hit.emit()
