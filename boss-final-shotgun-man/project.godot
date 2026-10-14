@@ -65,14 +65,14 @@ weapon_next={
 ]
 }
 
-[physics]
-
-3d/physics_engine="Jolt Physics"
-
 [layer_names]
 
 2d_physics/layer_1="Floor"
 2d_physics/layer_2="Wall"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 
