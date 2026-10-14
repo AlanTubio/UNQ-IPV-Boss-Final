@@ -3,8 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bsh2oly3ys3vu" path="res://src/game/environment/world.tscn" id="1_6afhr"]
 [ext_resource type="PackedScene" uid="uid://kwqo8jmxadfb" path="res://src/game/entities/player/player.tscn" id="1_ie5yk"]
 [ext_resource type="Script" uid="uid://b0ei7pejt02ug" path="res://src/game/MouseCamera.gd" id="3_6afhr"]
+[ext_resource type="PackedScene" uid="uid://caxwg0y6se28u" path="res://src/game/environment/background_parallax.tscn" id="4_ftaki"]
 
 [node name="Main" type="Node" unique_id=1547505868]
+
+[node name="BackgroundParallax" parent="." unique_id=1733165689 instance=ExtResource("4_ftaki")]
 
 [node name="World" parent="." unique_id=319541539 instance=ExtResource("1_6afhr")]
 
@@ -13,3 +16,11 @@ position = Vector2(50, -38)
 
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1734832085]
+
+[node name="Container" type="Control" parent="CanvasLayer" unique_id=1701937196]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

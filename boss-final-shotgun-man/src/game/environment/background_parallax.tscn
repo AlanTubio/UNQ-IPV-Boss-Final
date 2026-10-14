@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://caxwg0y6se28u"]
+
+[ext_resource type="Texture2D" uid="uid://cj2eo7goeb8oy" path="res://assets/texture/map/background/moon/1.png" id="1_sky"]
+[ext_resource type="Texture2D" uid="uid://dmiuoiabycf36" path="res://assets/texture/map/background/moon/2.png" id="2_moon"]
+[ext_resource type="Texture2D" uid="uid://cabfhsa1qw2r4" path="res://assets/texture/map/background/CLOUDS/6.png" id="2_t0m6e"]
+[ext_resource type="Texture2D" uid="uid://b81x2b2b8wgjl" path="res://assets/texture/map/background/moon/3.png" id="3_branches"]
+[ext_resource type="Texture2D" uid="uid://csmxspi4wpk6g" path="res://assets/texture/map/background/CLOUDS/4.png" id="3_fueda"]
+[ext_resource type="Texture2D" uid="uid://c7n3fxwt2tur2" path="res://assets/texture/map/background/CLOUDS/5.png" id="4_aq587"]
+
+[node name="BackgroundParallax" type="Node" unique_id=1733165689]
+
+[node name="Sky" type="Parallax2D" parent="." unique_id=1494406532]
+scale = Vector2(3, 3)
+scroll_scale = Vector2(0.02, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=213819129]
+texture = ExtResource("1_sky")
+
+[node name="Cloud" type="Parallax2D" parent="." unique_id=1537029401]
+scroll_scale = Vector2(0.01, 0.04)
+
+[node name="cloud1" type="Sprite2D" parent="Cloud" unique_id=1831192889]
+position = Vector2(-335, 297)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_t0m6e")
+
+[node name="cloud2" type="Sprite2D" parent="Cloud" unique_id=255506647]
+position = Vector2(-289, -231)
+texture = ExtResource("3_fueda")
+
+[node name="cloud3" type="Sprite2D" parent="Cloud" unique_id=1899641080]
+position = Vector2(577, -166)
+texture = ExtResource("4_aq587")
+
+[node name="Moon" type="Parallax2D" parent="." unique_id=2073131688]
+scale = Vector2(2, 2)
+scroll_scale = Vector2(0.04, 0.04)
+
+[node name="Sprite2D" type="Sprite2D" parent="Moon" unique_id=2073131689]
+position = Vector2(-146, -91.5)
+texture = ExtResource("2_moon")
+
+[node name="Branches" type="Parallax2D" parent="." unique_id=2073131690]
+visible = false
+scroll_scale = Vector2(0.08, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Branches" unique_id=2073131691]
+scale = Vector2(3, 3)
+texture = ExtResource("3_branches")
