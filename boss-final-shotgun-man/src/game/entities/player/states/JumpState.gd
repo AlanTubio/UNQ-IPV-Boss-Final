@@ -11,7 +11,6 @@ var resume_after_dash: bool = false
 
 
 func enter() -> void:
-	
 	if resume_after_dash and not character.is_on_floor():
 		resume_after_dash = false
 		if character.velocity.y > 0:
@@ -25,7 +24,7 @@ func enter() -> void:
 	jumps = 1
 	has_used_wall_jump = false
 	can_wall_jump = false
-	character.velocity.y = -character.jump_speed
+	character.velocity.y = - character.jump_speed
 	character._play_animation(&"jump")
 
 
@@ -48,11 +47,11 @@ func handle_input(event: InputEvent) -> void:
 			has_used_wall_jump = true
 			if not wall_timer.is_stopped():
 				wall_timer.stop()
-			character.velocity.y = -character.jump_speed
+			character.velocity.y = - character.jump_speed
 			character._play_animation(&"jump")
 		elif jumps < jumps_limit:
 			jumps += 1
-			character.velocity.y = -character.jump_speed
+			character.velocity.y = - character.jump_speed
 			character._play_animation(&"jump")
 
 
@@ -83,10 +82,10 @@ func handle_event(event: StringName, ...values: Array) -> void:
 			if not character.is_on_floor() and not has_used_wall_jump:
 				can_wall_jump = true
 				wall_timer.start()
-				var push_dir: float = -sign(character.body_pivot.scale.x)
+				var push_dir: float = - sign(character.body_pivot.scale.x)
 				if push_dir == 0:
 					push_dir = -1.0
-				character.velocity.x = push_dir * 200.0
+				character.apply_knockback(Vector2(push_dir, 0.0), 800.0)
 		&"hit", &"healed":
 			character.sum_hp(values.front())
 		&"hp_changed":

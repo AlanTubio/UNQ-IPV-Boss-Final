@@ -34,6 +34,7 @@ signal wall_hit()
 @export var friction_weight: float = 6.25 # Lo multiplicamos por delta, asi que es 0.1 / (1.0 / 60.0)
 @export var gravity: float = 625.0 # Lo multiplicamos por delta, asi que es 10.0 / (1.0 / 60.0)
 @export var push_force: float = 80.0
+@export var knockback_friction: float = 2500.0
 
 @export var max_hp: int = 10
 var hp: int = max_hp
@@ -52,6 +53,7 @@ var stamina: float = max_stamina
 
 var projectile_container: Node
 var h_movement_direction: int = 0
+var knockback_velocity: Vector2 = Vector2.ZERO
 
 ## Flag de ayuda para saber identificar el estado de actividad
 var dead: bool = false
@@ -110,6 +112,10 @@ func _handle_deacceleration(delta: float) -> void:
 	velocity.x = lerp(velocity.x, 0.0, friction_weight * delta) if abs(velocity.x) > 1 else 0
 
 
+func apply_knockback(direction: Vector2, force: float) -> void:
+	knockback_velocity = direction.normalized() * force
+
+
 # Se extrae el comportamiento de la aplicación de gravedad y movimiento
 
 # a una función para ser llamada apropiadamente desde cada state
@@ -129,6 +135,10 @@ func _apply_movement(delta: float) -> void:
 			collision.get_collider().apply_central_impulse(
 				- collision_normal.slerp(-velocity.normalized(), 0.5) * push_force * velocity_alignment
 			)
+
+	if abs(knockback_velocity.x) > 0.01:
+		velocity.x = knockback_velocity.x
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
 	
 	move_and_slide()
 
