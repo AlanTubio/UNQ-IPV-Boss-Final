@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://87upwficjeky"]
+
+[ext_resource type="PackedScene" uid="uid://cxisdtebhpv45" path="res://src/game/entities/enemies/enemy.tscn" id="1_oe1nl"]
+[ext_resource type="Script" uid="uid://dw7bdx0xi8qsf" path="res://src/game/entities/enemies/orcShaman/OrcShamanStateMachine.gd" id="2_i24as"]
+[ext_resource type="Script" uid="uid://edqq8ftg0si7" path="res://src/game/entities/enemies/orcShaman/states/IdleState.gd" id="3_vqiqm"]
+[ext_resource type="Script" uid="uid://c4ajioy24sn6n" path="res://src/game/entities/enemies/orcShaman/states/WalkState.gd" id="4_o6ts5"]
+[ext_resource type="Script" uid="uid://b4hnyiu1ktmvo" path="res://src/game/entities/enemies/orcShaman/states/DeadState.gd" id="5_iba2k"]
+[ext_resource type="Script" uid="uid://dfr00wjisk1fq" path="res://src/game/entities/enemies/orcShaman/states/AlertState.gd" id="6_mrw6d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dugut"]
+radius = 17.0
+height = 58.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oe1nl"]
+load_path = "res://.godot/imported/Idle.png-c1a8e58bd40dde81b5b03b6346733af6.ctex"
+
+[node name="OrcShaman" unique_id=746463665 instance=ExtResource("1_oe1nl")]
+position = Vector2(0, -47)
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1866766466]
+position = Vector2(0, 18)
+shape = SubResource("CapsuleShape2D_dugut")
+
+[node name="Body" parent="." index="1" unique_id=2004967925]
+texture = SubResource("CompressedTexture2D_oe1nl")
+hframes = 5
+
+[node name="ProgressBar" parent="." index="3" unique_id=849818712]
+offset_left = -2.0
+offset_top = -45.0
+offset_right = 2.0
+offset_bottom = -18.0
+
+[node name="StateMachine" type="Node" parent="." index="5" unique_id=568586340 node_paths=PackedStringArray("character")]
+script = ExtResource("2_i24as")
+character = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=268090094]
+script = ExtResource("3_vqiqm")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle" index="0" unique_id=958928339]
+
+[node name="Walk" type="Node" parent="StateMachine" index="1" unique_id=2097989422]
+script = ExtResource("4_o6ts5")
+
+[node name="Dead" type="Node" parent="StateMachine" index="2" unique_id=857145082]
+script = ExtResource("5_iba2k")
+
+[node name="Alert" type="Node" parent="StateMachine" index="3" unique_id=1989761877]
+script = ExtResource("6_mrw6d")
