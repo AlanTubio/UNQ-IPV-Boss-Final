@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cfeo5wc6vwrf0"]
+
+[ext_resource type="Script" uid="uid://73gkjkwdap3r" path="res://src/game/entities/projectiles/Projectile.gd" id="1_icv5x"]
+
+[sub_resource type="Animation" id="Animation_q75y3"]
+resource_name = "fire_loop"
+
+[sub_resource type="Animation" id="Animation_e8ag0"]
+resource_name = "fire_start"
+
+[sub_resource type="Animation" id="Animation_3jvm7"]
+resource_name = "hit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb2v7"]
+_data = {
+&"fire_loop": SubResource("Animation_q75y3"),
+&"fire_start": SubResource("Animation_e8ag0"),
+&"hit": SubResource("Animation_3jvm7")
+}
+
+[node name="Projectile" type="Node2D" unique_id=1611645598]
+script = ExtResource("1_icv5x")
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=236240438]
+
+[node name="ProjectileAnimations" type="AnimationPlayer" parent="." unique_id=72414533]
+libraries/ = SubResource("AnimationLibrary_rb2v7")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1857322753]
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hitbox_body_entered"]

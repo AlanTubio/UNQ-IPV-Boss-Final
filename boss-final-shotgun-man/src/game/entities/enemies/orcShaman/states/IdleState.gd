@@ -1,56 +1,68 @@
+## Este estado hereda de un State intermedio llamado TurretState
+## que extiende la interfaz de State con comportamientos específicos
+## (se puede abrir el script con Ctrl+click)
 extends OrcShamanState
 
+# Usamos un Timer para controlar cuánto tiempo queda in Idle
+@export var idle_timer: Timer
 
-# Al entrar se activa primero la animación "walk"
+
 func enter() -> void:
-    character._play_animation(&"walk")
+	# Seteamos la velocidad a (0,0) para que no se mueva
+	character.velocity = Vector2.ZERO
+	
+	# Chequeamos si debe estar con la guardia en alto o no
+	if character.target != null:
+		character._play_animation(&"idle_alert")
+	else:
+		character._play_animation(&"idle")
+	# Iniciamos el Timer para salir del estado
+	idle_timer.start()
 
 
+func update(_delta: float) -> void:
+	# Aplicamos movimiento, para que siga "colisionando" con el mundo
+	character.move_and_slide()
+	
+	# Y si notamos que puede "ver" al objetivo, entramos en Alert
+	if character._can_see_target():
+		finished.emit(&"alert")
+
+
+# Al salir, nos aseguramos de limpiar el timer de Idle
 func exit() -> void:
-    return
+	idle_timer.stop()
 
 
-func handle_input(event: InputEvent) -> void:
-    if event.is_action_pressed(&"jump"):
-        finished.emit(&"jump")
-    elif event.is_action_pressed(&"dash"):
-        finished.emit(&"dash")
+# Cuando termina el timer, transiciona al estado Walk
+func _on_idle_timer_timeout() -> void:
+	finished.emit(&"walk")
 
 
-# En esta función vamos a manejar las acciones apropiadas para este estado
-func update(delta: float) -> void:
-    # Vamos a querer que se pueda disparar
-    character._handle_weapon_actions(delta)
-
-# Vamos a manejar los inputs de movimiento
-    character._handle_move_input(delta)
-    # Aplicar ese movimiento, sin desacelerar
-    character._apply_movement(delta)
-
-# Y luego chequeamos si se quedó quieto el personaje
-    if character.h_movement_direction == 0:
-        # Y cambiamos el estado a idle
-        finished.emit(&"idle")
-    else:
-        # O aplicamos la animación que corresponde
-        if character.is_on_floor():
-            character._play_animation(&"walk")
-        else:
-            if character.velocity.y > 0:
-                character._play_animation(&"fall")
-            else:
-                character._play_animation(&"jump")
+func _handle_body_entered(body: Node) -> void:
+	super._handle_body_entered(body)
+	
+	## No se ejecuta directamente el "idle_alert", sino que se ejecuta una
+	## animación de transición
+	character._play_animation(&"alert")
 
 
-func _on_animation_finished(_anim_name: StringName) -> void:
-    return
+func _handle_body_exited(body: Node) -> void:
+	super._handle_body_exited(body)
+	
+	## No se ejecuta directamente el "idle", sino que se ejecuta una
+	## animación de transición
+	character._play_animation(&"go_normal")
 
 
-# En este callback manejamos, por el momento, solo los impactos
-func handle_event(event: StringName, ...values: Array) -> void:
-    match event:
-        &"hit", &"healed":
-            character.sum_hp(values.front())
-        &"hp_changed":
-            if values.front() == 0:
-                finished.emit(&"dead")
+# Manejamos la transicion de animaciones "intermedias" a animaciones finales
+func _on_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		&"alert":
+			character._play_animation(&"idle_alert")
+		&"go_normal":
+			character._play_animation(&"idle")
+
+
+func handle_input(_event: InputEvent) -> void:
+	return

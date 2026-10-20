@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dnqolbevl60vn"]
+
+[ext_resource type="PackedScene" uid="uid://cfeo5wc6vwrf0" path="res://src/game/entities/projectiles/Projectile.tscn" id="1_nwxv6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ud5j"]
+
+[node name="OrcProjectile" unique_id=1611645598 instance=ExtResource("1_nwxv6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1857322753) index="0" unique_id=642756521]
+shape = SubResource("CircleShape2D_5ud5j")
+
+[node name="Body" type="Node2D" parent="." index="3" unique_id=659014471]
+
+[node name="Sprite2D" type="Sprite2D" parent="Body" index="0" unique_id=65924970]
+
+[node name="Fx" type="Sprite2D" parent="." index="4" unique_id=1959760494]

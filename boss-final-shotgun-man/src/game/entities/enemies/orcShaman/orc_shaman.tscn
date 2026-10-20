@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cxisdtebhpv45" path="res://src/game/entities/enemies/enemy.tscn" id="1_oe1nl"]
 [ext_resource type="Script" uid="uid://dw7bdx0xi8qsf" path="res://src/game/entities/enemies/orcShaman/OrcShamanStateMachine.gd" id="2_i24as"]
+[ext_resource type="Script" uid="uid://cdnajxouf7xqo" path="res://src/game/entities/enemies/orcShaman/orc_shaman.gd" id="2_vqiqm"]
+[ext_resource type="PackedScene" uid="uid://dnqolbevl60vn" path="res://src/game/entities/projectiles/orc_projectile.tscn" id="3_o6ts5"]
 [ext_resource type="Script" uid="uid://edqq8ftg0si7" path="res://src/game/entities/enemies/orcShaman/states/IdleState.gd" id="3_vqiqm"]
 [ext_resource type="Script" uid="uid://c4ajioy24sn6n" path="res://src/game/entities/enemies/orcShaman/states/WalkState.gd" id="4_o6ts5"]
 [ext_resource type="Script" uid="uid://b4hnyiu1ktmvo" path="res://src/game/entities/enemies/orcShaman/states/DeadState.gd" id="5_iba2k"]
@@ -16,24 +18,33 @@ load_path = "res://.godot/imported/Idle.png-c1a8e58bd40dde81b5b03b6346733af6.cte
 
 [node name="OrcShaman" unique_id=746463665 instance=ExtResource("1_oe1nl")]
 position = Vector2(0, -47)
+script = ExtResource("2_vqiqm")
+projectile_scene = ExtResource("3_o6ts5")
 
-[node name="CollisionShape2D" parent="." index="0" unique_id=1866766466]
+[node name="FirePosition" type="Marker2D" parent="." index="0" unique_id=726185889]
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1866766466]
 position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_dugut")
 
-[node name="Body" parent="." index="1" unique_id=2004967925]
+[node name="Body" parent="." index="2" unique_id=2004967925]
 texture = SubResource("CompressedTexture2D_oe1nl")
 hframes = 5
 
-[node name="ProgressBar" parent="." index="3" unique_id=849818712]
+[node name="ProgressBar" parent="." index="4" unique_id=849818712]
 offset_left = -2.0
 offset_top = -45.0
 offset_right = 2.0
 offset_bottom = -18.0
 
-[node name="StateMachine" type="Node" parent="." index="5" unique_id=568586340 node_paths=PackedStringArray("character")]
+[node name="RayCast2D" type="RayCast2D" parent="." index="5" unique_id=913806316]
+
+[node name="StateMachine" type="Node" parent="." index="7" unique_id=568586340 node_paths=PackedStringArray("character", "dead_state", "start_state", "states_list")]
 script = ExtResource("2_i24as")
 character = NodePath("..")
+dead_state = NodePath("Dead")
+start_state = NodePath("Idle")
+states_list = [NodePath("Idle"), NodePath("Walk"), NodePath("Dead"), NodePath("Alert")]
 
 [node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=268090094]
 script = ExtResource("3_vqiqm")
@@ -48,3 +59,8 @@ script = ExtResource("5_iba2k")
 
 [node name="Alert" type="Node" parent="StateMachine" index="3" unique_id=1989761877]
 script = ExtResource("6_mrw6d")
+
+[connection signal="animation_finished" from="AnimationEnemy" to="StateMachine" method="_on_animation_finished"]
+[connection signal="body_entered" from="DetectionArea" to="StateMachine" method="notify_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="StateMachine" method="notify_body_exited"]
+[connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]

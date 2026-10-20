@@ -23,10 +23,9 @@ var path: PackedVector2Array = PackedVector2Array()
 func enter() -> void:
 	# Al ingresar, primero definimos si tenemos un "pathfinding" para usar
 	if character.pathfinding != null:
-		
 		# Luego definimos un punto random "objetivo"
 		var random_point: Vector2 = (
-			character.global_position + 
+			character.global_position +
 			Vector2(
 				randf_range(-wander_radius.x, wander_radius.x),
 				randf_range(-wander_radius.y, wander_radius.y)
@@ -99,7 +98,7 @@ func update(_delta: float) -> void:
 	character.move_and_slide()
 	
 	# Y orientamos al cuerpo en la dirección de movimiento
-	character.body_anim.flip_h =  character.velocity.x < 0
+	character.body_anim.flip_h = character.velocity.x < 0
 
 
 func _handle_body_entered(body: Node) -> void:
