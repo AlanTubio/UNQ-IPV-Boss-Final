@@ -1,11 +1,10 @@
-
 ## Al proyectil le cambiamos el tipo a Node2D para desacoplar
 ## funciones tales como gráficos, para que pueda manejarlo de
 ## manera independiente con su propia implementación
 extends Node2D
 
 @onready var lifetime_timer: Timer = $LifetimeTimer
-@onready var hitbox: Area2D = $Hitbox
+@onready var hitbox: Area2D = $HitBox
 @onready var projectile_animations: AnimationPlayer = $ProjectileAnimations
 
 @export var damage: int = 1

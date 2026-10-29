@@ -32,7 +32,7 @@ func _initialize() -> void:
 		)
 		add_child(enemy_instance)
 		enemy_instance.global_position = enemy_pos
-
+		enemy_instance.pathfinding = pathfinding
 
 ## Al definir el setter, se pueden asignar las variables en contexto de
 ## "tool" en el editor y utilizarlas.

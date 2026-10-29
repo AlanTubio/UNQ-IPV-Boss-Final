@@ -19,6 +19,7 @@ var _projectile_container: Node
 
 @export var max_hp: int = 5
 var hp: int = max_hp
+@export var gravity: float = 625.0
 
 ## Flag de ayuda para saber identificar el estado de actividad
 var dead: bool = false

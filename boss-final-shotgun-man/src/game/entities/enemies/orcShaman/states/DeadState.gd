@@ -8,15 +8,12 @@ func enter() -> void:
 	character.collision_mask = 0
 	
 	# Y determinamos qué animación de muerte usar
-	if character.target != null:
-		character._play_animation(&"die_alert")
-	else:
-		character._play_animation(&"die")
+	character._play_animation(&"die")
 
 
 # Y al terminar cualquier animación de muerte, triggereamos "_remove"
 func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name in [&"die_alert", &"die"]:
+	if anim_name in [&"die"]:
 		character._remove()
 
 

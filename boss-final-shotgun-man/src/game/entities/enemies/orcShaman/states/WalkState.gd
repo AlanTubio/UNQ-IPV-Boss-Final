@@ -44,10 +44,7 @@ func enter() -> void:
 		else:
 			## Sino, iniciamos y determinamos la animación a usar dependiendo
 			## de la cercanía del Player
-			if character.target != null:
-				character._play_animation(&"walk_alert")
-			else:
-				character._play_animation(&"walk")
+			character._play_animation(&"walk")
 	else:
 		# Si no es asi, regresamos al estado Idle
 		finished.emit(&"idle")
@@ -58,7 +55,7 @@ func exit() -> void:
 	path = PackedVector2Array()
 
 
-func update(_delta: float) -> void:
+func update(delta: float) -> void:
 	# Primero chequeamos si debemos entrar en Alert
 	if character._can_see_target():
 		finished.emit(&"alert")
@@ -66,39 +63,45 @@ func update(_delta: float) -> void:
 	
 	# Luego chequeamos si terminamos de caminar y hay que regresar a Idle
 	if path.is_empty():
+		character.velocity.x = 0.0
 		finished.emit(&"idle")
 		return
 	
 	# Tomamos el siguiente punto a recorrer
 	var next_point: Vector2 = path[0]
 	
-	# Chequeamos que no "llegamos" al punto o cualquiera sucesivo
+	# Chequeamos que no "llegamos" al punto o cualquiera sucesivo en el eje X
 	while (
-		character.global_position.distance_to(next_point) < pathfinding_step_threshold
+		abs(character.global_position.x - next_point.x) < pathfinding_step_threshold
 	):
 		# Si llegamos, quitamos el punto inmediato
 		path.remove_at(0)
 		
 		# Si el camino está vacío, llegamos y regresamos a Idle
 		if path.is_empty():
+			character.velocity.x = 0.0
 			finished.emit(&"idle")
 			return
 		
 		# Sino, definimos el siguiente punto a moverse
 		next_point = path[0]
 	
-	## Aplicamos la velocidad para el movimiento, definiendo la dirección al
-	## próximo punto a moverse y aplicandole la velocidad
-	character.velocity = (
-		character.velocity +
-		character.global_position.direction_to(next_point) * speed
-	).limit_length(max_speed) # Acá limitamos la velocidad a un máximo determinado
+	## Aplicamos movimiento horizontal hacia el próximo punto
+	var direction_x: float = sign(next_point.x - character.global_position.x)
+	character.velocity.x = move_toward(character.velocity.x, direction_x * max_speed, speed)
+	
+	## Aplicamos gravedad para que se mantenga en el suelo
+	if not character.is_on_floor():
+		character.velocity.y += character.gravity * delta
+	else:
+		character.velocity.y = 0.0
 	
 	# Aplicamos el movimiento en el personaje
 	character.move_and_slide()
 	
 	# Y orientamos al cuerpo en la dirección de movimiento
-	character.body_anim.flip_h = character.velocity.x < 0
+	if direction_x != 0:
+		character.body.flip_h = direction_x < 0
 
 
 func _handle_body_entered(body: Node) -> void:
@@ -114,7 +117,7 @@ func _handle_body_exited(body) -> void:
 	
 	## No se ejecuta directamente el "walk", sino que se ejecuta una
 	## animación de transición
-	character._play_animation(&"go_normal")
+	character._play_animation(&"walk")
 
 
 # Manejamos la transicion de animaciones "intermedias" a animaciones finales
@@ -122,8 +125,6 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		&"alert":
 			character._play_animation(&"walk_alert")
-		&"go_normal":
-			character._play_animation(&"walk")
 
 
 func handle_input(_event: InputEvent) -> void:

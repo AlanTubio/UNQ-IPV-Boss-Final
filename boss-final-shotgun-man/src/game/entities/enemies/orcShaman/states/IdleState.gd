@@ -20,8 +20,12 @@ func enter() -> void:
 	idle_timer.start()
 
 
-func update(_delta: float) -> void:
-	# Aplicamos movimiento, para que siga "colisionando" con el mundo
+func update(delta: float) -> void:
+	# Aplicamos gravedad para que caiga y colisione con el suelo
+	if not character.is_on_floor():
+		character.velocity.y += character.gravity * delta
+	else:
+		character.velocity.y = 0.0
 	character.move_and_slide()
 	
 	# Y si notamos que puede "ver" al objetivo, entramos en Alert
@@ -52,7 +56,7 @@ func _handle_body_exited(body: Node) -> void:
 	
 	## No se ejecuta directamente el "idle", sino que se ejecuta una
 	## animación de transición
-	character._play_animation(&"go_normal")
+	character._play_animation(&"idle")
 
 
 # Manejamos la transicion de animaciones "intermedias" a animaciones finales
@@ -60,8 +64,6 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		&"alert":
 			character._play_animation(&"idle_alert")
-		&"go_normal":
-			character._play_animation(&"idle")
 
 
 func handle_input(_event: InputEvent) -> void:
