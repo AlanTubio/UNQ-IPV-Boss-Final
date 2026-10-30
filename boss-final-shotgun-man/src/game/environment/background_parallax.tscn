@@ -9,41 +9,43 @@
 
 [node name="BackgroundParallax" type="Node" unique_id=1733165689]
 
-[node name="Sky" type="Parallax2D" parent="." unique_id=1494406532]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1891978653]
+
+[node name="Sky" type="Parallax2D" parent="Parallax2D" unique_id=1494406532]
 scale = Vector2(3, 3)
 scroll_scale = Vector2(0.02, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=213819129]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D/Sky" unique_id=213819129]
 texture = ExtResource("1_sky")
 
-[node name="Cloud" type="Parallax2D" parent="." unique_id=1537029401]
+[node name="Cloud" type="Parallax2D" parent="Parallax2D" unique_id=1537029401]
 scroll_scale = Vector2(0.01, 0.04)
 
-[node name="cloud1" type="Sprite2D" parent="Cloud" unique_id=1831192889]
+[node name="cloud1" type="Sprite2D" parent="Parallax2D/Cloud" unique_id=1831192889]
 position = Vector2(-335, 297)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_t0m6e")
 
-[node name="cloud2" type="Sprite2D" parent="Cloud" unique_id=255506647]
+[node name="cloud2" type="Sprite2D" parent="Parallax2D/Cloud" unique_id=255506647]
 position = Vector2(-289, -231)
 texture = ExtResource("3_fueda")
 
-[node name="cloud3" type="Sprite2D" parent="Cloud" unique_id=1899641080]
+[node name="cloud3" type="Sprite2D" parent="Parallax2D/Cloud" unique_id=1899641080]
 position = Vector2(577, -166)
 texture = ExtResource("4_aq587")
 
-[node name="Moon" type="Parallax2D" parent="." unique_id=2073131688]
+[node name="Moon" type="Parallax2D" parent="Parallax2D" unique_id=2073131688]
 scale = Vector2(2, 2)
 scroll_scale = Vector2(0.04, 0.04)
 
-[node name="Sprite2D" type="Sprite2D" parent="Moon" unique_id=2073131689]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D/Moon" unique_id=2073131689]
 position = Vector2(-146, -91.5)
 texture = ExtResource("2_moon")
 
-[node name="Branches" type="Parallax2D" parent="." unique_id=2073131690]
+[node name="Branches" type="Parallax2D" parent="Parallax2D" unique_id=2073131690]
 visible = false
 scroll_scale = Vector2(0.08, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Branches" unique_id=2073131691]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D/Branches" unique_id=2073131691]
 scale = Vector2(3, 3)
 texture = ExtResource("3_branches")

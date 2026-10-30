@@ -241,7 +241,7 @@ max_offset_h = 100.0
 max_offset_y = -30.0
 base_offset = Vector2(0, 16)
 offset_speed = 1.5
-min_zoom = Vector2(5, 5)
+min_zoom = Vector2(4, 4)
 max_zoom = Vector2(1, 1)
 zoom_speed = 5.0
 
