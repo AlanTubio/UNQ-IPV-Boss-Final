@@ -5,10 +5,11 @@
 [ext_resource type="Script" uid="uid://b0ei7pejt02ug" path="res://src/game/MouseCamera.gd" id="3_6afhr"]
 [ext_resource type="PackedScene" uid="uid://caxwg0y6se28u" path="res://src/game/environment/background_parallax.tscn" id="4_ftaki"]
 [ext_resource type="PackedScene" uid="uid://2fyn1mh08spv" path="res://src/game/entities/enemies/astar_tile_map.tscn" id="5_686t5"]
+[ext_resource type="PackedScene" uid="uid://wpn0vhssqian" path="res://src/game/ui/GUI.tscn" id="5_qncrs"]
 [ext_resource type="Texture2D" uid="uid://c8fh2sqqykw40" path="res://assets/gray_square.png" id="6_686t5"]
 [ext_resource type="Script" uid="uid://cbxilcsrdwftf" path="res://src/game/entities/enemies/EnemySpawner.gd" id="7_ceowl"]
 [ext_resource type="PackedScene" uid="uid://87upwficjeky" path="res://src/game/entities/enemies/orcShaman/orc_shaman.tscn" id="8_tbcyw"]
-[ext_resource type="Script" uid="uid://dlr0b4hy4dgys" path="res://src/game/ui/health_ui.gd" id="9_health_ui"]
+[ext_resource type="AudioStream" uid="uid://dwovd8cicnuy6" path="res://assets/sound/background/Dark 1.ogg" id="10_5e013"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceowl"]
 texture = ExtResource("6_686t5")
@@ -37,33 +38,9 @@ position = Vector2(50, -38)
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1734832085]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1734832085]
 
-[node name="Container" type="Control" parent="CanvasLayer" unique_id=1701937196]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HealthUI" type="Control" parent="CanvasLayer/Container" unique_id=2039906394]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 220.0
-offset_bottom = 62.0
-script = ExtResource("9_health_ui")
-
-[node name="Hearts" type="Label" parent="CanvasLayer/Container/HealthUI" unique_id=893044882]
-layout_mode = 0
-theme_override_colors/font_color = Color(0.95, 0.15, 0.15, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 28
-text = "HP"
+[node name="GUI" parent="UILayer" unique_id=936654177 instance=ExtResource("5_qncrs")]
 
 [node name="Enemies" type="Node2D" parent="." unique_id=752482336]
 
@@ -137,3 +114,7 @@ enemy_scene = ExtResource("8_tbcyw")
 amount = 2
 extents = Vector2(150, 0)
 pathfinding = NodePath("../AstarTileMap")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2056130912]
+stream = ExtResource("10_5e013")
+autoplay = true
