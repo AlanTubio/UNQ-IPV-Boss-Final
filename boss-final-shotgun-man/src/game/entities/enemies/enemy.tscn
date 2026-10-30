@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cxisdtebhpv45"]
+
+[ext_resource type="Script" uid="uid://ct03kaxq8den5" path="res://src/game/entities/enemies/enemy.gd" id="1_13bet"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lg0lk"]
+radius = 26.0
+height = 70.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lg0lk"]
+radius = 359.2005
+
+[node name="Enemy" type="CharacterBody2D" unique_id=746463665]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_13bet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1866766466]
+shape = SubResource("CapsuleShape2D_lg0lk")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=2004967925]
+
+[node name="AnimationEnemy" type="AnimationPlayer" parent="." unique_id=424297268]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1330095224]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=166167539]
+shape = SubResource("CircleShape2D_lg0lk")

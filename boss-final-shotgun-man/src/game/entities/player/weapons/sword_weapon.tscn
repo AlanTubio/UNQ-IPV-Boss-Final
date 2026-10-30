@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4d5qlgxbf57o"]
 
 [ext_resource type="Script" uid="uid://hcafgpw4ljk4" path="res://src/game/entities/player/weapons/sword_weapon.gd" id="1_48khy"]
-[ext_resource type="Texture2D" uid="uid://csijhmyhpqt4s" path="res://assets/texture/player/enemies/Robber/PNG/Vector Parts/Melee Weapon.png" id="1_qy3lo"]
+[ext_resource type="Texture2D" uid="uid://byv56abvn7o58" path="res://assets/texture/player/weapon/Melee Weapon.png" id="3_75d3s"]
 [ext_resource type="Texture2D" uid="uid://b0qn870opfmq6" path="res://assets/texture/player/weapon/slash_effect/sprite-sheet.png" id="3_struk"]
 
 [sub_resource type="Animation" id="Animation_qy3lo"]
@@ -177,7 +177,7 @@ libraries/ = SubResource("AnimationLibrary_struk")
 position = Vector2(19, -30)
 rotation = -1.0665305
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("1_qy3lo")
+texture = ExtResource("3_75d3s")
 
 [node name="Fx" type="Sprite2D" parent="SwordPivot" unique_id=1362866312]
 visible = false

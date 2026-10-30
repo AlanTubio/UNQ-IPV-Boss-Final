@@ -67,8 +67,9 @@ weapon_next={
 
 [layer_names]
 
-2d_physics/layer_1="Floor"
-2d_physics/layer_2="Wall"
+2d_physics/layer_1="Piso"
+2d_physics/layer_2="Pared"
+2d_physics/layer_3="Jugador"
 
 [physics]
 

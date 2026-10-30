@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://2fyn1mh08spv"]
+
+[ext_resource type="Texture2D" uid="uid://c8fh2sqqykw40" path="res://assets/gray_square.png" id="1_10pvb"]
+[ext_resource type="Script" uid="uid://bltvko1yaw1qh" path="res://src/game/entities/enemies/astar_tile_map.gd" id="1_d0gfd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwe65"]
+texture = ExtResource("1_10pvb")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/2 = 2
+0:0/3 = 3
+0:0/4 = 4
+0:0/5 = 5
+0:0/6 = 6
+0:0/7 = 7
+
+[sub_resource type="TileSet" id="TileSet_tbcyw"]
+sources/0 = SubResource("TileSetAtlasSource_pwe65")
+
+[node name="AstarTileMap" type="TileMapLayer" unique_id=222436861]
+tile_set = SubResource("TileSet_tbcyw")
+script = ExtResource("1_d0gfd")
