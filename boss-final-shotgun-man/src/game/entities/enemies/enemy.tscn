@@ -21,10 +21,6 @@ shape = SubResource("CapsuleShape2D_lg0lk")
 
 [node name="AnimationEnemy" type="AnimationPlayer" parent="." unique_id=424297268]
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=849818712]
-offset_right = 4.0
-offset_bottom = 27.0
-
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1330095224]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=166167539]

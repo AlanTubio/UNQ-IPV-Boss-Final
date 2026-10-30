@@ -2,6 +2,7 @@
 class_name OrcShamanState extends AbstractState
 
 var character: OrcShaman
+var animation_before_hurt: StringName = &""
 
 
 ## Manejamos los eventos de detección de cuerpo aprovechando el polimorfismo
@@ -31,7 +32,17 @@ func _handle_body_exited(body: Node) -> void:
 
 
 func _handle_hit(amount: int) -> void:
+	if character.get_current_animation() != &"hurt":
+		animation_before_hurt = character.get_current_animation()
 	character._sum_hp(amount)
+	if character.hp > 0:
+		character._play_animation(&"hurt")
+
+
+func _restore_animation_after_hurt() -> void:
+	if animation_before_hurt != &"":
+		character._play_animation(animation_before_hurt)
+	animation_before_hurt = &""
 
 
 func _handle_hp_changed(hp: int, _max_hp: int) -> void:

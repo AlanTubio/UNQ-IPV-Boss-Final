@@ -1,23 +1,26 @@
 [gd_scene format=3 uid="uid://dh4563ijlto6g"]
 
-[ext_resource type="Script" uid="uid://8wrs8slux7a" path="res://src/game/entities/player/weapons/bullet.gd" id="1_bullet"]
-[ext_resource type="Texture2D" uid="uid://cdjnalr2k0a8a" path="res://assets/texture/player/5 Bullets/3.png" id="2_hhlll"]
+[ext_resource type="PackedScene" uid="uid://cfeo5wc6vwrf0" path="res://src/game/entities/projectiles/Projectile.tscn" id="1_projectile"]
+[ext_resource type="Script" uid="uid://8wrs8slux7a" path="res://src/game/entities/player/weapons/bullet.gd" id="2_bullet"]
+[ext_resource type="Texture2D" uid="uid://cdjnalr2k0a8a" path="res://assets/texture/player/weapon/5 Bullets/3.png" id="2_hhlll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6p45"]
 size = Vector2(6, 4)
 
-[node name="Bullet" type="Area2D" unique_id=100000001]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("1_bullet")
+[node name="Bullet" unique_id=1041378573 instance=ExtResource("1_projectile")]
+script = ExtResource("2_bullet")
+speed = 600.0
+damage = 20
 
-[node name="BulletSprite" type="Sprite2D" parent="." unique_id=100000002]
-scale = Vector2(1.0714285, 2)
-texture = ExtResource("2_hhlll")
+[node name="LifetimeTimer" parent="." index="0" unique_id=236240438]
+wait_time = 0.3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100000003]
+[node name="HitBox" parent="." index="2" unique_id=1857322753]
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=100000003]
 shape = SubResource("RectangleShape2D_l6p45")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=100000004]
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="BulletSprite" type="Sprite2D" parent="." index="3" unique_id=100000002]
+scale = Vector2(1.0714285, 2)
+texture = ExtResource("2_hhlll")

@@ -125,6 +125,9 @@ func _handle_body_exited(body) -> void:
 
 # Manejamos la transicion de animaciones "intermedias" a animaciones finales
 func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == &"hurt":
+		_restore_animation_after_hurt()
+		return
 	match anim_name:
 		&"alert":
 			character._play_animation(&"walk_alert")

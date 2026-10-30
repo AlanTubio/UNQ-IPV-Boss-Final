@@ -27,6 +27,9 @@ func fire() -> void:
 ## acciones. Quizás no sea lo óptimo, pero genera una sensación de "progresión".
 ## Se podría meter un Timer para manejarlo de otra manera también
 func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == &"hurt":
+		_restore_animation_after_hurt()
+		return
 	# Si el objetivo salio del rango de disparo, regresamos a Idle
 	if character.target == null:
 		finished.emit(&"idle")

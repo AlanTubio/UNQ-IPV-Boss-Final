@@ -7,6 +7,8 @@ extends GenericStateMachine
 func _setup() -> void:
 	for state: OrcShamanState in states_list:
 		state.character = character
+	character.hit.connect(notify_hit)
+	character.hp_changed.connect(_on_turret_hp_changed)
 
 
 func notify_body_entered(body: Node) -> void:

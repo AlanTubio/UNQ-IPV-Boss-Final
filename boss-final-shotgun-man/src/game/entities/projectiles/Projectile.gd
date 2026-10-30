@@ -2,6 +2,7 @@
 ## funciones tales como gráficos, para que pueda manejarlo de
 ## manera independiente con su propia implementación
 extends Node2D
+class_name Projectile
 
 @onready var lifetime_timer: Timer = $LifetimeTimer
 @onready var hitbox: Area2D = $HitBox

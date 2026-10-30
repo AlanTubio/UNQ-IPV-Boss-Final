@@ -155,8 +155,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_4p3t7"]
 resource_name = "die"
-length = 0.52
-loop_mode = 1
+length = 5.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -205,6 +204,59 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_5dnq5"]
+resource_name = "hurt"
+length = 0.1
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_shdah")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_2113k"]
@@ -264,7 +316,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_7c50o"]
 resource_name = "idle_alert"
 length = 0.8
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -429,6 +480,7 @@ _data = {
 &"alert": SubResource("Animation_cqhk3"),
 &"attack": SubResource("Animation_wycif"),
 &"die": SubResource("Animation_4p3t7"),
+&"hurt": SubResource("Animation_5dnq5"),
 &"idle": SubResource("Animation_2113k"),
 &"idle_alert": SubResource("Animation_7c50o"),
 &"walk": SubResource("Animation_ombto"),
@@ -448,21 +500,12 @@ shape = SubResource("CapsuleShape2D_dugut")
 
 [node name="Body" parent="." index="2" unique_id=2004967925]
 texture = ExtResource("4_w2si0")
-hframes = 2
+hframes = 5
 
 [node name="AnimationEnemy" parent="." index="3" unique_id=424297268]
 libraries/ = SubResource("AnimationLibrary_cqhk3")
 
-[node name="ProgressBar" parent="." index="4" unique_id=849818712]
-offset_left = -2.0
-offset_top = -45.0
-offset_right = 2.0
-offset_bottom = -18.0
-
-[node name="RayCast2D" type="RayCast2D" parent="." index="5" unique_id=913806316]
-collision_mask = 7
-
-[node name="DetectionArea" parent="." index="6" unique_id=1330095224]
+[node name="DetectionArea" parent="." index="4" unique_id=1330095224]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
@@ -470,7 +513,10 @@ collision_mask = 4
 [node name="CollisionShape2D" parent="DetectionArea" index="0" unique_id=166167539]
 unique_name_in_owner = true
 
-[node name="StateMachine" type="Node" parent="." index="7" unique_id=568586340 node_paths=PackedStringArray("character", "dead_state", "start_state", "states_list")]
+[node name="RayCast2D" type="RayCast2D" parent="." index="5" unique_id=913806316]
+collision_mask = 7
+
+[node name="StateMachine" type="Node" parent="." index="6" unique_id=568586340 node_paths=PackedStringArray("character", "dead_state", "start_state", "states_list")]
 script = ExtResource("2_i24as")
 character = NodePath("..")
 dead_state = NodePath("Dead")

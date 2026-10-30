@@ -27,6 +27,7 @@ signal wall_hit()
 @onready var body_pivot: Node2D = $BodyPivot
 @onready var body: Sprite2D = %Body
 @onready var floor_raycasts: Array = $FloorRaycasts.get_children()
+@onready var state_machine: Node = $StateMachine
 
 @export var acceleration: float = 3750.0 # Lo multiplicamos por delta, asi que es 60.0 / (1.0 / 60.0)
 @export var h_speed_limit: float = 300.0
@@ -36,7 +37,7 @@ signal wall_hit()
 @export var push_force: float = 80.0
 @export var knockback_friction: float = 2500.0
 
-@export var max_hp: int = 10
+@export var max_hp: int = 3
 var hp: int = max_hp
 
 @export var max_mana: float = 5.0
@@ -62,6 +63,8 @@ var dead: bool = false
 func _ready() -> void:
 	initialize()
 	weapon_manager.wall_hit.connect(func(): wall_hit.emit())
+	hit.connect(state_machine.notify_hit)
+	hp_changed.connect(state_machine.notify_hp_changed)
 
 
 func initialize(_projectile_container: Node = get_parent()) -> void:

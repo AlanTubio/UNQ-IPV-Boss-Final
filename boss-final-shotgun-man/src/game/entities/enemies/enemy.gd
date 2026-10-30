@@ -8,7 +8,6 @@ signal hp_changed(hp, max_hp)
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var body: Sprite2D = $Body
 @onready var animation_player: AnimationPlayer = $AnimationEnemy
-@onready var hp_progress: ProgressBar = $ProgressBar
 
 @export var projectile_scene: PackedScene
 @export var pathfinding: PathfindAstar
@@ -18,7 +17,7 @@ signal hp_changed(hp, max_hp)
 var target: Node2D
 var _projectile_container: Node
 
-@export var max_hp: int = 5
+@export var max_hp: int = 100
 var hp: int = max_hp
 @export var gravity: float = 625.0
 
@@ -26,9 +25,7 @@ var hp: int = max_hp
 var dead: bool = false
 
 func _ready() -> void:
-	hp_progress.max_value = max_hp
-	hp_progress.value = hp
-	hp_progress.modulate = Color.TRANSPARENT
+	pass
 
 
 func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
@@ -80,27 +77,10 @@ func notify_hit(amount: int = 1) -> void:
 	hit.emit(amount)
 
 
-## Ahora manejamos una pool de HP del enemigo. A diferencia del Player,
-## el enemigo puede mostrar localmente su HP mediante, por ejemplo,
-## una barra de salud.
-
-## En este caso, se puede programar para que la barra de salud tenga
-## una animación de fade utilizando SceneTreeTweens.
-var hp_tween: Tween
-
 func _sum_hp(amount: int) -> void:
 	hp = clamp(hp + amount, 0, max_hp)
-	hp_progress.max_value = max_hp
-	hp_progress.value = hp
 	hp_changed.emit(hp, max_hp)
 	
-	if hp_tween:
-		hp_tween.kill()
-	hp_tween = create_tween()
-	hp_progress.modulate = Color.WHITE
-	hp_tween.tween_property(hp_progress, "modulate", Color.TRANSPARENT, 5.0)
-
-
 func _remove() -> void:
 	get_parent().remove_child(self)
 	queue_free()

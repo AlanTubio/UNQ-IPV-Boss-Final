@@ -18,6 +18,9 @@ extends AbstractWeapon
 ## Spread total del cono en grados (el cono va de -spread_deg/2 a +spread_deg/2)
 @export var spread_deg: float = 40.0
 
+## Daño aplicado por cada perdigón.
+@export var pellet_damage: int = 20
+
 
 func _ready() -> void:
 	attacks_anim.animation_finished.connect(_on_attacks_anim_animation_finished)
@@ -82,9 +85,9 @@ func _fire(character: Node) -> void:
 		var direction: Vector2 = Vector2.from_angle(base_angle + spread_angle)
 
 		var bullet: Bullet = bullet_scene.instantiate()
-		bullet.direction = direction
-		bullet.global_position = muzzle_point.global_position
+		bullet.damage = pellet_damage
 		projectile_container.add_child(bullet)
+		bullet.initialize(muzzle_point.global_position, direction)
 
 
 func _on_attacks_anim_animation_finished(_animation_name: StringName) -> void:
