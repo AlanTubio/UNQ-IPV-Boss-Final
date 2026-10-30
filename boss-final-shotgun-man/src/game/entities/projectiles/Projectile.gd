@@ -11,6 +11,7 @@ extends Node2D
 @export var velocity: float = 800.0
 
 var direction: Vector2
+var removed: bool = false
 
 
 func initialize(spawn_position: Vector2, shoot_direction: Vector2) -> void:
@@ -43,6 +44,9 @@ func _on_lifetime_timer_timeout() -> void:
 
 
 func remove() -> void:
+	if removed:
+		return
+	removed = true
 	hitbox.collision_mask = 0
 	set_physics_process(false)
 	
@@ -53,8 +57,12 @@ func remove() -> void:
 
 ## Esta función se llamaría desde "hit" al terminar la animación
 func _remove() -> void:
-	get_parent().remove_child(self)
 	queue_free()
+
+
+func _on_projectile_animation_finished(animation_name: StringName) -> void:
+	if animation_name == &"hit":
+		_remove()
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

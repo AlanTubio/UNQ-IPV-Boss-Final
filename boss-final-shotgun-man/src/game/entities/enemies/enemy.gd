@@ -12,6 +12,7 @@ signal hp_changed(hp, max_hp)
 
 @export var projectile_scene: PackedScene
 @export var pathfinding: PathfindAstar
+@export var target_aim_offset: Vector2 = Vector2(0, -45)
 
 
 var target: Node2D
@@ -36,24 +37,32 @@ func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
 
 
 func _fire() -> void:
-	if target != null:
-		var proj_instance: Node = projectile_scene.instantiate()
-		if _projectile_container == null:
-			_projectile_container = get_parent()
+	if target == null || not _can_see_target():
+		return
+
+	var proj_instance: Node = projectile_scene.instantiate()
+	if _projectile_container == null:
+		_projectile_container = get_parent()
 		_projectile_container.add_child(proj_instance)
-		proj_instance.initialize(
-			fire_position.global_position,
-			fire_position.global_position.direction_to(target.global_position)
-		)
+	else:
+		_projectile_container.add_child(proj_instance)
+	proj_instance.initialize(
+		fire_position.global_position,
+		fire_position.global_position.direction_to(_get_target_aim_position())
+	)
 
 
 # Al igual que con el script del player, abstraemos a una función la detección del target
 func _can_see_target() -> bool:
 	if target == null:
 		return false
-	raycast.target_position = raycast.to_local(target.global_position)
+	raycast.target_position = raycast.to_local(_get_target_aim_position())
 	raycast.force_raycast_update()
 	return raycast.is_colliding() && raycast.get_collider() == target
+
+
+func _get_target_aim_position() -> Vector2:
+	return target.global_position + target_aim_offset
 
 
 # Damos vuelta el cuerpo para que mire al objetivo en el eje x
