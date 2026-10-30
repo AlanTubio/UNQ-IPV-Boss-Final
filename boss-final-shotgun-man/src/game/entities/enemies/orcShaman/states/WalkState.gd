@@ -44,7 +44,10 @@ func enter() -> void:
 		else:
 			## Sino, iniciamos y determinamos la animación a usar dependiendo
 			## de la cercanía del Player
-			character._play_animation(&"walk")
+			if character.target != null:
+				character._play_animation(&"walk_alert")
+			else:
+				character._play_animation(&"walk")
 	else:
 		# Si no es asi, regresamos al estado Idle
 		finished.emit(&"idle")

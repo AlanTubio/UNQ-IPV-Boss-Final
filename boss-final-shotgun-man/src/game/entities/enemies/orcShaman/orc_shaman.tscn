@@ -49,8 +49,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_cqhk3"]
 resource_name = "alert"
-length = 0.22
-loop_mode = 1
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -450,7 +449,7 @@ shape = SubResource("CapsuleShape2D_dugut")
 
 [node name="Body" parent="." index="2" unique_id=2004967925]
 texture = ExtResource("4_w2si0")
-hframes = 6
+hframes = 2
 
 [node name="AnimationEnemy" parent="." index="3" unique_id=424297268]
 libraries/ = SubResource("AnimationLibrary_cqhk3")

@@ -1,10 +1,30 @@
 [gd_scene format=3 uid="uid://dnqolbevl60vn"]
 
 [ext_resource type="PackedScene" uid="uid://cfeo5wc6vwrf0" path="res://src/game/entities/projectiles/Projectile.tscn" id="1_nwxv6"]
+[ext_resource type="Texture2D" uid="uid://cblfsk6d3dqff" path="res://assets/texture/enemies/Orc_Shaman/fx/fire hit/sprite-sheet.png" id="2_lp8ne"]
+
+[sub_resource type="Animation" id="Animation_lp8ne"]
+resource_name = "fire_loop"
+
+[sub_resource type="Animation" id="Animation_ml28v"]
+resource_name = "fire_start"
+
+[sub_resource type="Animation" id="Animation_03he2"]
+resource_name = "hit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7681q"]
+_data = {
+&"fire_loop": SubResource("Animation_lp8ne"),
+&"fire_start": SubResource("Animation_ml28v"),
+&"hit": SubResource("Animation_03he2")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ud5j"]
 
 [node name="OrcProjectile" unique_id=1611645598 instance=ExtResource("1_nwxv6")]
+
+[node name="ProjectileAnimations" parent="." index="1" unique_id=72414533]
+libraries/ = SubResource("AnimationLibrary_7681q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1857322753) index="0" unique_id=642756521]
 shape = SubResource("CircleShape2D_5ud5j")
@@ -12,5 +32,12 @@ shape = SubResource("CircleShape2D_5ud5j")
 [node name="Body" type="Node2D" parent="." index="3" unique_id=659014471]
 
 [node name="Sprite2D" type="Sprite2D" parent="Body" index="0" unique_id=65924970]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lp8ne")
+hframes = 5
+vframes = 2
 
 [node name="Fx" type="Sprite2D" parent="." index="4" unique_id=1959760494]
+scale = Vector2(0.5, 0.5)
+hframes = 5
+vframes = 2
