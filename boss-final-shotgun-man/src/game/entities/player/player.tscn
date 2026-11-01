@@ -224,6 +224,7 @@ hframes = 4
 vframes = 4
 
 [node name="WeaponPivot" type="Node2D" parent="BodyPivot" unique_id=2052303112]
+position = Vector2(0, -10)
 
 [node name="WeaponManager" type="Node2D" parent="." unique_id=1061508329]
 position = Vector2(0, -21)

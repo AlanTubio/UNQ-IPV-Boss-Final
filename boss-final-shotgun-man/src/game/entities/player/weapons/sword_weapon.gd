@@ -6,6 +6,9 @@ signal wall_hit()
 @onready var sword_pivot: Node2D = $SwordPivot
 @onready var cut_area: Area2D = $SwordPivot/CutArea
 
+## Daño aplicado por cada espadazo.
+@export var sword_damage: int = 20
+
 
 func _ready() -> void:
 	attacks_anim.animation_finished.connect(_on_attacks_anim_animation_finished)
@@ -43,5 +46,9 @@ func _on_attacks_anim_animation_finished(_animation_name: StringName) -> void:
 
 
 func _on_cut_area_body_entered(body: Node) -> void:
-	if body.tile_set.get_physics_layer_collision_layer(0):
+	if body.has_method("notify_hit"):
+		body.notify_hit(-sword_damage)
+	elif body is TileMapLayer and body.tile_set.get_physics_layer_collision_layer(0):
+		wall_hit.emit()
+	elif body is CollisionObject2D and body.collision_layer & 2:
 		wall_hit.emit()

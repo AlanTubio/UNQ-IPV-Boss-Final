@@ -21,6 +21,8 @@ extends AbstractWeapon
 ## Daño aplicado por cada perdigón.
 @export var pellet_damage: int = 20
 
+const SHOTGUN_SPRITE_ANGLE: float = deg_to_rad(45.0)
+
 
 func _ready() -> void:
 	attacks_anim.animation_finished.connect(_on_attacks_anim_animation_finished)
@@ -59,12 +61,14 @@ func update_weapon(_delta: float, character: Node, can_attack: bool = true) -> v
 ## Tambien selecciona la textura según si el personaje está en el aire o no.
 func _aim_at_mouse(character: Node) -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	# Rotamos el pivot hacia el mouse usando la posición global del arma como origen
-	var angle: float = (mouse_pos - global_position).angle()
-	shotgun_pivot.rotation = angle
+	var aiming_left: bool = mouse_pos.x < global_position.x
 
-	# Corregimos el flip del sprite según el lado hacia el que apunta
-	if mouse_pos.x < global_position.x:
+	# El cañón del sprite nuevo está inclinado 45 grados respecto del eje del pivot.
+	var angle: float = (mouse_pos - global_position).angle()
+	shotgun_pivot.rotation = angle + (-SHOTGUN_SPRITE_ANGLE if aiming_left else SHOTGUN_SPRITE_ANGLE)
+
+	# Corregimos el flip del sprite según el lado hacia el que apunta.
+	if aiming_left:
 		shotgun_pivot.scale.y = -1.0
 	else:
 		shotgun_pivot.scale.y = 1.0

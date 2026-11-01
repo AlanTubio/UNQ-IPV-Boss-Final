@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4d5qlgxbf57o"]
 
 [ext_resource type="Script" uid="uid://hcafgpw4ljk4" path="res://src/game/entities/player/weapons/sword_weapon.gd" id="1_48khy"]
-[ext_resource type="Texture2D" uid="uid://byv56abvn7o58" path="res://assets/texture/player/weapon/Melee Weapon.png" id="3_75d3s"]
+[ext_resource type="Texture2D" uid="uid://bx6k2xg02wn18" path="res://assets/texture/player/weapon/espada.png" id="3_75d3s"]
 [ext_resource type="Texture2D" uid="uid://b0qn870opfmq6" path="res://assets/texture/player/weapon/slash_effect/sprite-sheet.png" id="3_struk"]
 
 [sub_resource type="Animation" id="Animation_qy3lo"]
@@ -9,50 +9,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SwordPivot/SwordSprite:position")
+tracks/0/path = NodePath("SwordPivot/CutArea/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.00040135547),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(19, -30)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SwordPivot/SwordSprite:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.00040135547),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.0665305]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SwordPivot/CutArea/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordPivot/Fx:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordPivot/SwordSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SwordPivot/Fx:visible")
+tracks/3/path = NodePath("SwordPivot/SwordSprite:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(30, -20)]
 }
 
 [sub_resource type="Animation" id="Animation_48khy"]
@@ -174,10 +174,12 @@ libraries/ = SubResource("AnimationLibrary_struk")
 [node name="SwordPivot" type="Node2D" parent="." unique_id=870246888]
 
 [node name="SwordSprite" type="Sprite2D" parent="SwordPivot" unique_id=1472603378]
-position = Vector2(19, -30)
-rotation = -1.0665305
-scale = Vector2(0.45, 0.45)
+position = Vector2(30, -20)
+scale = Vector2(2, 2)
 texture = ExtResource("3_75d3s")
+hframes = 8
+vframes = 8
+frame = 47
 
 [node name="Fx" type="Sprite2D" parent="SwordPivot" unique_id=1362866312]
 visible = false
@@ -186,11 +188,11 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_struk")
 hframes = 5
 vframes = 2
-frame = 8
+frame = 4
 
 [node name="CutArea" type="Area2D" parent="SwordPivot" unique_id=801427334]
 visible = false
-collision_mask = 2
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/CutArea" unique_id=25902780]
 position = Vector2(28, -32)
