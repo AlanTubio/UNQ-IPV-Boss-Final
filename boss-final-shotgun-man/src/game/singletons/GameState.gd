@@ -27,3 +27,8 @@ signal level_won()
 
 func notify_level_won() -> void:
 	level_won.emit()
+
+signal input_map_changed()
+
+func notify_input_map_changed() -> void:
+	emit_signal("input_map_changed")

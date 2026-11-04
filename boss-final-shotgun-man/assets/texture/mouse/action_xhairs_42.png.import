@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwg7anacxvtkl"
-path="res://.godot/imported/GUISprite.png-67091b35c499ee2dba6082ceec99e3ad.ctex"
+uid="uid://dpjcnqpbvexll"
+path="res://.godot/imported/action_xhairs_42.png-d250c89e37db016ab307b5b20b3176fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/ui/GUISprite.png"
-dest_files=["res://.godot/imported/GUISprite.png-67091b35c499ee2dba6082ceec99e3ad.ctex"]
+source_file="res://assets/texture/mouse/action_xhairs_42.png"
+dest_files=["res://.godot/imported/action_xhairs_42.png-d250c89e37db016ab307b5b20b3176fd.ctex"]
 
 [params]
 

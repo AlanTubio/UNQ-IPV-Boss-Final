@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://cgf8nxut0nbdv"]
+
+[ext_resource type="Texture2D" uid="uid://cckit7llswxr0" path="res://assets/texture/ui/menu/Frame_main_menu_red.png" id="2_gkfs6"]
+[ext_resource type="Script" uid="uid://dnkhln18xjh32" path="res://src/game/ui/VictoryMenu.gd" id="3"]
+[ext_resource type="FontFile" uid="uid://4i3kmdckaj04" path="res://assets/font/HelpMe.ttf" id="4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsbas"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkfs6"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3658"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 0, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asila"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+border_blend = true
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgg5"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pft2s"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0.5882353, 0.6392157, 0, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[node name="VictoryMenu" type="Control" unique_id=944488704]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1316719885]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.25098)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=439236801]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1998014579]
+position = Vector2(144, 81.5)
+scale = Vector2(0.2868447, 0.1305044)
+texture = ExtResource("2_gkfs6")
+
+[node name="Panel" type="Panel" parent="." unique_id=2011544499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rsbas")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1791906111]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 17.0
+offset_right = -10.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("4")
+text = "to be continued"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=262482370]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -8.0
+offset_right = -15.0
+offset_bottom = 12.0
+
+[node name="NextButton" type="Button" parent="Panel/VBoxContainer" unique_id=206979185]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62352943, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.62352943, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gkfs6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_gkfs6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y3658")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_y3658")
+theme_override_styles/hover = SubResource("StyleBoxFlat_asila")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_asila")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_asila")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_asila")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3tgg5")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_3tgg5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pft2s")
+text = "RESTART"
+
+[node name="ReturnButton" type="Button" parent="Panel/VBoxContainer" unique_id=385993585]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62352943, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.62352943, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gkfs6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_gkfs6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y3658")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_y3658")
+theme_override_styles/hover = SubResource("StyleBoxFlat_asila")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_asila")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_asila")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_asila")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3tgg5")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_3tgg5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pft2s")
+text = "Main menu"
+
+[connection signal="pressed" from="Panel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

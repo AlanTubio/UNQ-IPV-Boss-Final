@@ -13,7 +13,7 @@
 
 [node name="Sky" type="Parallax2D" parent="Parallax2D" unique_id=1494406532]
 scale = Vector2(3, 3)
-scroll_scale = Vector2(0.02, 0)
+scroll_scale = Vector2(0.1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D/Sky" unique_id=213819129]
 texture = ExtResource("1_sky")
