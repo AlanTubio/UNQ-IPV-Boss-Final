@@ -1,10 +1,13 @@
 extends PlayerState
 
 
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
+
 # Al ser un estado de finalización (es decir, no se sale
 # a ningun otro estado), vamos a procesar todo lo necesario
 # en el enter
 func enter() -> void:
+    death_sound.play()
     character.died.emit()
     character._play_animation(&"die")
 

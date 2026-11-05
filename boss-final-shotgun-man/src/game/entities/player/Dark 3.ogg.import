@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bfmw3ddvlufm3"
+path="res://.godot/imported/Dark 3.ogg-dbb944d035218d49282b56e8f08ac4b9.oggvorbisstr"
+
+[deps]
+
+source_file="res://src/game/entities/player/Dark 3.ogg"
+dest_files=["res://.godot/imported/Dark 3.ogg-dbb944d035218d49282b56e8f08ac4b9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

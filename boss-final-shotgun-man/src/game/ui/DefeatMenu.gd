@@ -6,6 +6,7 @@ extends Control
 signal retry_selected()
 signal return_selected()
 
+@onready var audioHover = $AudioHover
 
 func _ready() -> void:
 	hide()
@@ -32,3 +33,7 @@ func _on_retry_button_pressed() -> void:
 func _on_return_button_pressed() -> void:
 	hide()
 	return_selected.emit()
+
+
+func _on_button_mouse_entered() -> void:
+	audioHover.play()

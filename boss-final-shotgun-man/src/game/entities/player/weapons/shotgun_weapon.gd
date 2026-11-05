@@ -8,6 +8,7 @@ extends AbstractWeapon
 @onready var shotgun_sprite: Sprite2D = $ShotgunPivot/ShotgunSprite
 @onready var muzzle_point: Marker2D = $ShotgunPivot/MuzzlePoint
 @onready var shoot_cooldown: Timer = $ShootCooldown
+@onready var shoot_sound: AudioStreamPlayer2D = $ShootSound
 
 ## Escena del proyectil a instanciar
 @export var bullet_scene: PackedScene
@@ -53,6 +54,7 @@ func update_weapon(_delta: float, character: Node, can_attack: bool = true) -> v
 
 	if Input.is_action_just_pressed(&"attack_weapon1"):
 		attacks_anim.play(&"shoot")
+		shoot_sound.play()
 		_fire(character)
 		shoot_cooldown.start()
 

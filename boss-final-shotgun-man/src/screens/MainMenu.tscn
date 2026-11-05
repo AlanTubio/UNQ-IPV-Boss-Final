@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://bax1ol5phf362" path="res://src/screens/components/MouseCamera.gd" id="6"]
 [ext_resource type="FontFile" uid="uid://4i3kmdckaj04" path="res://assets/font/HelpMe.ttf" id="6_5a1cm"]
 [ext_resource type="FontFile" uid="uid://b7tyy4ayg5227" path="res://assets/font/HelpMe.otf" id="7_tkec7"]
+[ext_resource type="AudioStream" uid="uid://c28mgen1omttr" path="res://assets/sound/background/Dark 3.ogg" id="9_tkec7"]
 [ext_resource type="Texture2D" uid="uid://w57855qklk25" path="res://assets/texture/mouse/pointer.png" id="10"]
+[ext_resource type="AudioStream" uid="uid://xw14ji8hyg87" path="res://assets/sound/ui/Minimalist12.ogg" id="10_a078r"]
 [ext_resource type="PackedScene" uid="uid://rpwsy0gateds" path="res://src/game/ui/OptionsMenu.tscn" id="11_a078r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xif3j"]
@@ -102,6 +104,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="CanvasLayer/Container" unique_id=936184346]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 23.0
+offset_right = -33.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_5a1cm")
+text = "SHOT GUN MAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Container" unique_id=198136274]
 layout_mode = 1
 anchors_preset = 8
@@ -110,9 +126,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -54.0
-offset_top = -41.5
+offset_top = -25.5
 offset_right = 54.0
-offset_bottom = 41.5
+offset_bottom = 57.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -179,6 +195,20 @@ text = "Exit"
 visible = false
 layout_mode = 1
 
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1143666899]
+stream = ExtResource("9_tkec7")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+
+[node name="AudioHover" type="AudioStreamPlayer" parent="." unique_id=1497239557]
+unique_name_in_owner = true
+stream = ExtResource("10_a078r")
+volume_db = -16.0
+
+[connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/OptionsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/OptionsButton" to="CanvasLayer/Container/OptionsMenu" method="show"]
+[connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_exit_button_pressed"]

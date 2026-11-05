@@ -13,6 +13,8 @@ signal hp_changed(hp, max_hp)
 @export var pathfinding: PathfindAstar
 @export var target_aim_offset: Vector2 = Vector2(0, -45)
 
+@onready var hit_sound: AudioStreamPlayer2D = $HitSound
+
 
 var target: Node2D
 var _projectile_container: Node
@@ -74,6 +76,8 @@ func _look_at_target() -> void:
 # colisiones con el mundo, pausa todo lo demás y ejecuta una animación de muerte
 # dependiendo de si el enemigo esta o no alerta
 func notify_hit(amount: int = 1) -> void:
+	if amount < 0:
+		hit_sound.play()
 	hit.emit(amount)
 
 

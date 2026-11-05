@@ -7,7 +7,7 @@ signal return_selected()
 signal restart_selected()
 
 @onready var options_menu: Control = $OptionsMenu
-
+@onready var audioHover = $AudioHover
 
 func _ready() -> void:
 	hide_custom()
@@ -46,3 +46,7 @@ func show_custom() -> void:
 func hide_custom() -> void:
 	hide()
 	get_tree().paused = false
+
+
+func _on_button_mouse_entered() -> void:
+	audioHover.play()

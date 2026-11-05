@@ -19,12 +19,16 @@ extends Node
 @export var mouse_cursor: Texture
 @export var scene: PackedScene
 
+@onready var audioHover = $AudioHover
+
 func _ready() -> void:
 	Input.set_custom_mouse_cursor(mouse_cursor)
-
 
 func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_packed(scene)
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_button_mouse_entered() -> void:
+	audioHover.play()

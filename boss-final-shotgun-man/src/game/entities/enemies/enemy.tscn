@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxisdtebhpv45"]
 
 [ext_resource type="Script" uid="uid://ct03kaxq8den5" path="res://src/game/entities/enemies/enemy.gd" id="1_13bet"]
+[ext_resource type="AudioStream" uid="uid://dfcg6oee40855" path="res://assets/sound/11_human_damage_2.wav" id="2_pnjdb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lg0lk"]
 radius = 26.0
@@ -25,3 +26,6 @@ shape = SubResource("CapsuleShape2D_lg0lk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=166167539]
 shape = SubResource("CircleShape2D_lg0lk")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1134295364]
+stream = ExtResource("2_pnjdb")

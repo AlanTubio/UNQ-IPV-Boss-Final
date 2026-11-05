@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cckit7llswxr0" path="res://assets/texture/ui/menu/Frame_main_menu_red.png" id="2_gkfs6"]
 [ext_resource type="Script" uid="uid://dnkhln18xjh32" path="res://src/game/ui/VictoryMenu.gd" id="3"]
 [ext_resource type="FontFile" uid="uid://4i3kmdckaj04" path="res://assets/font/HelpMe.ttf" id="4"]
+[ext_resource type="AudioStream" uid="uid://b3jaxw720xhve" path="res://assets/sound/background/Dark 5.ogg" id="4_gkfs6"]
+[ext_resource type="AudioStream" uid="uid://xw14ji8hyg87" path="res://assets/sound/ui/Minimalist12.ogg" id="5_y3658"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsbas"]
 draw_center = false
@@ -170,5 +172,18 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_3tgg5")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pft2s")
 text = "Main menu"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1797406816]
+unique_name_in_owner = true
+stream = ExtResource("4_gkfs6")
+volume_db = 8.0
+parameters/looping = true
+
+[node name="AudioHover" type="AudioStreamPlayer" parent="." unique_id=1764697913]
+unique_name_in_owner = true
+stream = ExtResource("5_y3658")
+volume_db = -16.0
+
+[connection signal="mouse_entered" from="Panel/VBoxContainer/NextButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

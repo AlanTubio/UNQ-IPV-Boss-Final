@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://drt23odviibas" path="res://assets/texture/enemies/Orc_Shaman/Walk.png" id="6_shdah"]
 [ext_resource type="Texture2D" uid="uid://4yyv7kr2aelo" path="res://assets/texture/enemies/Orc_Shaman/Magic_1.png" id="8_4p3t7"]
 [ext_resource type="Texture2D" uid="uid://r5v7frgfua3w" path="res://assets/texture/enemies/Orc_Shaman/Run.png" id="10_2113k"]
+[ext_resource type="AudioStream" uid="uid://cpxcg05pykht2" path="res://assets/sound/16_human_walk_stone_1.wav" id="16_2113k"]
+[ext_resource type="AudioStream" uid="uid://4eva3s406r58" path="res://assets/sound/22_orc_jump_1.wav" id="17_wycif"]
+[ext_resource type="AudioStream" uid="uid://yj2pr365qksr" path="res://assets/sound/24_orc_death_spin.wav" id="18_7c50o"]
+[ext_resource type="AudioStream" uid="uid://cd473ke12qp07" path="res://assets/sound/magicsound.mp3" id="19_rereq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dugut"]
 radius = 17.0
@@ -152,6 +156,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_4p3t7"]
 resource_name = "die"
@@ -205,6 +235,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Die")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Die:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_5dnq5"]
 resource_name = "hurt"
@@ -257,6 +313,32 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurt:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_2113k"]
@@ -419,6 +501,35 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("walk")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("walk:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_rereq"]
 resource_name = "walk_alert"
@@ -472,6 +583,35 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("walk")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("walk:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cqhk3"]
@@ -544,6 +684,18 @@ state_id = &"dead"
 [node name="Alert" type="Node" parent="StateMachine" index="3" unique_id=1989761877]
 script = ExtResource("6_mrw6d")
 state_id = &"alert"
+
+[node name="walk" type="AudioStreamPlayer2D" parent="." index="7" unique_id=578860170]
+stream = ExtResource("16_2113k")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="." index="8" unique_id=2068695058]
+stream = ExtResource("17_wycif")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="." index="9" unique_id=1021939028]
+stream = ExtResource("18_7c50o")
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="." index="10" unique_id=1689410667]
+stream = ExtResource("19_rereq")
 
 [connection signal="animation_finished" from="AnimationEnemy" to="StateMachine" method="_on_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="StateMachine" method="notify_body_entered"]

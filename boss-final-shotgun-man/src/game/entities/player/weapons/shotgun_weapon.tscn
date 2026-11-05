@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bgpohmf8wb810" path="res://src/game/entities/player/weapons/shotgun_weapon.gd" id="1_shotgungd"]
 [ext_resource type="PackedScene" uid="uid://dh4563ijlto6g" path="res://src/game/entities/player/weapons/bullet.tscn" id="3_bullet"]
 [ext_resource type="Texture2D" uid="uid://bpb8fh222n1we" path="res://assets/texture/player/weapon/2 Guns/escopetas.png" id="3_ptb0a"]
+[ext_resource type="AudioStream" uid="uid://dcm1y6t6yjt10" path="res://assets/sound/shotgun_blast.mp3" id="4_fw5gk"]
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -63,3 +64,8 @@ frame = 47
 
 [node name="MuzzlePoint" type="Marker2D" parent="ShotgunPivot" unique_id=1352328483]
 position = Vector2(18, -18)
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1262026054]
+unique_name_in_owner = true
+stream = ExtResource("4_fw5gk")
+volume_db = -5.0
