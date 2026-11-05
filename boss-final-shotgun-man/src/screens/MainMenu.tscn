@@ -80,19 +80,20 @@ script = ExtResource("1")
 mouse_cursor = ExtResource("10")
 scene = ExtResource("3_wtd8s")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1369613270]
-scroll_ignore_camera_zoom = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=1201399041]
-position = Vector2(143.96, 81.57751)
-scale = Vector2(0.28692386, 0.1303803)
-texture = ExtResource("4_5a1cm")
-
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=2146046776]
 position = Vector2(144, 81)
 position_smoothing_enabled = true
 script = ExtResource("6")
-movement_strength = 0.25
+
+[node name="Sprite2D" type="TextureRect" parent="." unique_id=409231308]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_5a1cm")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=471438612]
 

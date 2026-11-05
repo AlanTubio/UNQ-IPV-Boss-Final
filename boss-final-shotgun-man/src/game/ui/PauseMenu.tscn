@@ -91,12 +91,16 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.25098)
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1841863414]
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=814975776]
-position = Vector2(143.5, 81.5)
-scale = Vector2(0.15924826, 0.11769416)
+[node name="Sprite2D" type="TextureRect" parent="." unique_id=1581442786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_ijoxx")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Panel" type="Panel" parent="." unique_id=1027700458]
 layout_mode = 1
