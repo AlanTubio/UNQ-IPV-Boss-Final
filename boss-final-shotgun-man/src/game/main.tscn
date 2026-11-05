@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b0ei7pejt02ug" path="res://src/game/MouseCamera.gd" id="3_6afhr"]
 [ext_resource type="PackedScene" uid="uid://caxwg0y6se28u" path="res://src/game/environment/background_parallax.tscn" id="4_ftaki"]
 [ext_resource type="PackedScene" uid="uid://2fyn1mh08spv" path="res://src/game/entities/enemies/astar_tile_map.tscn" id="5_686t5"]
+[ext_resource type="PackedScene" uid="uid://d24f418usmrj5" path="res://src/game/entities/goal/Goal.tscn" id="5_guohj"]
 [ext_resource type="PackedScene" uid="uid://wpn0vhssqian" path="res://src/game/ui/GUI.tscn" id="5_qncrs"]
 [ext_resource type="Texture2D" uid="uid://c8fh2sqqykw40" path="res://assets/gray_square.png" id="6_686t5"]
 [ext_resource type="PackedScene" uid="uid://d0wl53hsyfl8g" path="res://src/game/ui/PauseMenu.tscn" id="6_8165d"]
@@ -53,11 +54,8 @@ script = ExtResource("3_6afhr")
 [node name="PauseMenu" parent="UILayer" unique_id=324699511 instance=ExtResource("6_8165d")]
 
 [node name="DefeatMenu" parent="UILayer" unique_id=248888905 instance=ExtResource("7_f6mi5")]
-[node name="VictoryMenu" parent="UILayer" unique_id=237086438 instance=ExtResource("8_sdah7")]
-offset_left = 1.0
-offset_top = -164.0
-offset_right = 1.0
-offset_bottom = -164.0
+
+[node name="VictoryMenu" parent="UILayer" unique_id=944488704 instance=ExtResource("8_sdah7")]
 
 [node name="Enemies" type="Node2D" parent="." unique_id=752482336]
 
@@ -137,9 +135,12 @@ stream = ExtResource("10_5e013")
 volume_db = 14.0
 autoplay = true
 
+[node name="Goal" parent="." unique_id=1125136970 instance=ExtResource("5_guohj")]
+position = Vector2(282, 24)
+
 [connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
 [connection signal="return_selected" from="UILayer/PauseMenu" to="." method="_on_return_requested"]
-[connection signal="next_selected" from="UILayer/VictoryMenu" to="." method="_on_level_won"]
-[connection signal="return_selected" from="UILayer/VictoryMenu" to="." method="_on_return_requested"]
 [connection signal="retry_selected" from="UILayer/DefeatMenu" to="." method="_on_restart_requested"]
 [connection signal="return_selected" from="UILayer/DefeatMenu" to="." method="_on_return_requested"]
+[connection signal="next_selected" from="UILayer/VictoryMenu" to="." method="_on_level_won"]
+[connection signal="return_selected" from="UILayer/VictoryMenu" to="." method="_on_return_requested"]

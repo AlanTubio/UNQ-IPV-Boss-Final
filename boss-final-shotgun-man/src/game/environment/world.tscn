@@ -870,11 +870,8 @@ texture = ExtResource("1_uguhw")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1nnn7"]
 texture = ExtResource("2_prorc")
 14:1/0 = 0
-14:1/0/terrain = 0
 14:2/0 = 0
-14:2/0/terrain = 0
 14:3/0 = 0
-14:3/0/terrain = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pq8x3"]
 texture = ExtResource("3_f7uk0")

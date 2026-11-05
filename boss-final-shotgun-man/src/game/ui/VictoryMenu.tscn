@@ -72,6 +72,7 @@ border_width_bottom = 1
 border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
 
 [node name="VictoryMenu" type="Control" unique_id=944488704]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +149,7 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_asila")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_3tgg5")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_3tgg5")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pft2s")
-text = "RESTART"
+text = "New game"
 
 [node name="ReturnButton" type="Button" parent="Panel/VBoxContainer" unique_id=385993585]
 layout_mode = 2

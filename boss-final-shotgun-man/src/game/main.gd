@@ -17,7 +17,7 @@ func _ready() -> void:
 
 # Funciones que hacen de interfaz para las señales
 func _on_level_won() -> void:
-	next_level_requested.emit()
+	get_tree().reload_current_scene()
 
 
 func _on_return_requested() -> void:
