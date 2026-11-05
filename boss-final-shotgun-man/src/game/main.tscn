@@ -130,13 +130,15 @@ amount = 2
 extents = Vector2(150, 0)
 pathfinding = NodePath("../AstarTileMap")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2056130912]
-stream = ExtResource("10_5e013")
-volume_db = 14.0
-autoplay = true
-
 [node name="Goal" parent="." unique_id=1125136970 instance=ExtResource("5_guohj")]
 position = Vector2(282, 24)
+
+[node name="MainBGM" type="AudioStreamPlayer" parent="." unique_id=2056130912]
+unique_name_in_owner = true
+stream = ExtResource("10_5e013")
+volume_db = 10.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
 [connection signal="return_selected" from="UILayer/PauseMenu" to="." method="_on_return_requested"]

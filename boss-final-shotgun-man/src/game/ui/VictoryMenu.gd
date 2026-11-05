@@ -6,6 +6,9 @@ extends Control
 signal next_selected()
 signal return_selected()
 
+@onready var audioBGM = $AudioStreamPlayer
+@onready var audioHover = $AudioHover
+
 
 func _ready() -> void:
 	hide_custom()
@@ -13,6 +16,7 @@ func _ready() -> void:
 
 
 func _on_level_won() -> void:
+	audioBGM.play()
 	show_custom()
 
 
@@ -34,3 +38,7 @@ func show_custom() -> void:
 func hide_custom() -> void:
 	hide()
 	get_tree().paused = false
+
+
+func _on_button_mouse_entered() -> void:
+	audioHover.play()

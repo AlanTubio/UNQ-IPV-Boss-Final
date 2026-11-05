@@ -3,6 +3,8 @@ extends PlayerState
 @export var jumps_limit: int = 2
 
 @onready var wall_timer: Timer = $WallTimer
+@onready var jump_sound: AudioStreamPlayer2D = $Jump
+@onready var idle_sound: AudioStreamPlayer2D = $Idle
 
 var jumps: int = 0
 var can_wall_jump: bool = false
@@ -11,6 +13,7 @@ var resume_after_dash: bool = false
 
 
 func enter() -> void:
+	jump_sound.play()
 	if resume_after_dash and not character.is_on_floor():
 		resume_after_dash = false
 		if character.velocity.y > 0:
@@ -43,6 +46,7 @@ func handle_input(event: InputEvent) -> void:
 		finished.emit(&"dash")
 	elif event.is_action_pressed(&"jump"):
 		if can_wall_jump:
+			jump_sound.play()
 			can_wall_jump = false
 			has_used_wall_jump = true
 			if not wall_timer.is_stopped():
@@ -50,6 +54,7 @@ func handle_input(event: InputEvent) -> void:
 			character.velocity.y = - character.jump_speed
 			character._play_animation(&"jump")
 		elif jumps < jumps_limit:
+			jump_sound.play()
 			jumps += 1
 			character.velocity.y = - character.jump_speed
 			character._play_animation(&"jump")
@@ -62,6 +67,7 @@ func update(delta: float) -> void:
 		character._handle_deacceleration(delta)
 	character._apply_movement(delta)
 	if character.is_on_floor():
+		idle_sound.play()
 		jumps = 0
 		has_used_wall_jump = false
 		if character.h_movement_direction == 0:

@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://hcafgpw4ljk4" path="res://src/game/entities/player/weapons/sword_weapon.gd" id="1_48khy"]
 [ext_resource type="Texture2D" uid="uid://bx6k2xg02wn18" path="res://assets/texture/player/weapon/espada.png" id="3_75d3s"]
 [ext_resource type="Texture2D" uid="uid://b0qn870opfmq6" path="res://assets/texture/player/weapon/slash_effect/sprite-sheet.png" id="3_struk"]
+[ext_resource type="AudioStream" uid="uid://vjebtjul2b4b" path="res://assets/sound/07_human_atk_sword_3.wav" id="4_18t6r"]
+[ext_resource type="AudioStream" uid="uid://ctwc6daug2gul" path="res://assets/sound/26_sword_hit_2.wav" id="5_18t6r"]
+[ext_resource type="AudioStream" uid="uid://tn84av7yyiel" path="res://assets/sound/26_sword_hit_3.wav" id="6_spjy8"]
 
 [sub_resource type="Animation" id="Animation_qy3lo"]
 length = 0.001
@@ -200,3 +203,12 @@ shape = SubResource("RectangleShape2D_5f2lw")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="SwordPivot" unique_id=1116576325]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=1378732180]
+stream = ExtResource("4_18t6r")
+
+[node name="WallHitSound" type="AudioStreamPlayer2D" parent="." unique_id=1749887271]
+stream = ExtResource("5_18t6r")
+
+[node name="EnemyHitSound" type="AudioStreamPlayer2D" parent="." unique_id=1599253751]
+stream = ExtResource("6_spjy8")

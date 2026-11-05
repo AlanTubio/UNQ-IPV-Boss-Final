@@ -52,6 +52,8 @@ var stamina: float = max_stamina
 @export var stamina_recovery_time: float = 5.0
 @export var stamina_recovery_delay: float = 0.5
 
+@onready var hit_sound: AudioStreamPlayer2D = $HitSound
+
 var projectile_container: Node
 var h_movement_direction: int = 0
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -163,6 +165,8 @@ func is_on_floor_raycasted() -> bool:
 # el handleo a la state machine emitiendo una señal. Esto es para
 # los casos de estados en los cuales no se manejan hits
 func notify_hit(amount: int = 1) -> void:
+	if amount < 0:
+		hit_sound.play()
 	hit.emit(amount)
 
 

@@ -8,6 +8,7 @@ class_name Projectile
 @onready var hitbox: Area2D = $HitBox
 @onready var projectile_animations: AnimationPlayer = $ProjectileAnimations
 
+
 @export var damage: int = 1
 @export var velocity: float = 800.0
 
@@ -50,7 +51,6 @@ func remove() -> void:
 	removed = true
 	hitbox.collision_mask = 0
 	set_physics_process(false)
-	
 	## Acá, como hicimos con Turret y Player, delegamos la "muerte"
 	## a una animación de golpe.
 	projectile_animations.play("hit")

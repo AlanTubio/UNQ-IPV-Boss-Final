@@ -189,4 +189,5 @@ size_flags_horizontal = 3
 action = &"weapon_next"
 action_name = &"Next weapon"
 
+[connection signal="mouse_entered" from="Panel/ReturnButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/ReturnButton" to="." method="_on_return_button_pressed"]

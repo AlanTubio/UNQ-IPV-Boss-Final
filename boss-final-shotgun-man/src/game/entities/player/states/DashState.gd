@@ -1,6 +1,7 @@
 extends PlayerState
 
 @onready var dash_cooldown_timer: Timer = $DashCooldown
+@onready var dash_sound: AudioStreamPlayer2D = $DashSound
 
 @export var dash_stamina_cost: float = 2.0
 @export var dash_time: float = 1.0
@@ -27,10 +28,11 @@ func _process(_delta: float) -> void:
 
 
 func enter() -> void:
-    if !dash_cooldown_timer.is_stopped() || character.stamina < dash_stamina_cost:
+    if !dash_cooldown_timer.is_stopped():
         finished.emit(&"walk")
     else:
         dash_timer.start(dash_time)
+        dash_sound.play()
         character.sum_stamina(-dash_stamina_cost)
         character._play_animation(&"dash")
         dash_cooldown_timer.start(dash_cooldown)

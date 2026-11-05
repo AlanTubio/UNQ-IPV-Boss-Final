@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cckit7llswxr0" path="res://assets/texture/ui/menu/Frame_main_menu_red.png" id="2_ijoxx"]
 [ext_resource type="PackedScene" uid="uid://rpwsy0gateds" path="res://src/game/ui/OptionsMenu.tscn" id="4_rabgt"]
 [ext_resource type="FontFile" uid="uid://4i3kmdckaj04" path="res://assets/font/HelpMe.ttf" id="5"]
+[ext_resource type="AudioStream" uid="uid://xw14ji8hyg87" path="res://assets/sound/ui/Minimalist12.ogg" id="5_ijoxx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkb4l"]
 draw_center = false
@@ -214,7 +215,16 @@ text = "Main menu"
 visible = false
 layout_mode = 1
 
+[node name="AudioHover" type="AudioStreamPlayer" parent="." unique_id=1008730738]
+unique_name_in_owner = true
+stream = ExtResource("5_ijoxx")
+volume_db = -16.0
+
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/OptionsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/OptionsButton" to="OptionsMenu" method="show"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/RestartButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
