@@ -88,12 +88,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vrbqv")
 
-[node name="Parallax2D" type="Parallax2D" parent="Panel" unique_id=1325488261]
-
-[node name="Sprite2D" type="Sprite2D" parent="Panel/Parallax2D" unique_id=55260898]
-position = Vector2(143.4575, 81.49999)
-scale = Vector2(0.2857715, 0.13050438)
+[node name="Sprite2D" type="TextureRect" parent="Panel" unique_id=1995066904]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_vsm68")
+expand_mode = 3
+stretch_mode = 6
 
 [node name="Label" type="Label" parent="Panel" unique_id=1917338954]
 layout_mode = 1

@@ -85,16 +85,6 @@ position = Vector2(144, 81)
 position_smoothing_enabled = true
 script = ExtResource("6")
 
-[node name="Sprite2D" type="TextureRect" parent="." unique_id=409231308]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_5a1cm")
-expand_mode = 1
-stretch_mode = 6
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=471438612]
 
 [node name="Container" type="Control" parent="CanvasLayer" unique_id=885810761]
@@ -104,6 +94,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Container" unique_id=409231308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_5a1cm")
+expand_mode = 3
+stretch_mode = 6
 
 [node name="Label" type="Label" parent="CanvasLayer/Container" unique_id=936184346]
 layout_mode = 1
