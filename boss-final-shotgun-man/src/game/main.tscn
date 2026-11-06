@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cgf8nxut0nbdv" path="res://src/game/ui/VictoryMenu.tscn" id="8_sdah7"]
 [ext_resource type="PackedScene" uid="uid://87upwficjeky" path="res://src/game/entities/enemies/orcShaman/orc_shaman.tscn" id="8_tbcyw"]
 [ext_resource type="AudioStream" uid="uid://dwovd8cicnuy6" path="res://assets/sound/background/Dark 1.ogg" id="10_5e013"]
+[ext_resource type="PackedScene" uid="uid://bcontrolstutorial1" path="res://src/game/ui/controls_tutorial.tscn" id="11_tutorial"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceowl"]
 texture = ExtResource("6_686t5")
@@ -153,6 +154,9 @@ enemy_scene = ExtResource("8_tbcyw")
 amount = 1
 extents = Vector2(30, 0)
 pathfinding = NodePath("../AstarTileMap")
+
+[node name="ControlsTutorial" parent="." unique_id=2010001010 instance=ExtResource("11_tutorial")]
+position = Vector2(-310, 300)
 
 [node name="Goal" parent="." unique_id=1125136970 instance=ExtResource("5_guohj")]
 position = Vector2(337, -5613)
