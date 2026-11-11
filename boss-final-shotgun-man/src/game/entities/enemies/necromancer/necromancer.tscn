@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cxisdtebhpv45" path="res://src/game/entities/enemies/enemy.tscn" id="1_cnixy"]
 [ext_resource type="Script" uid="uid://qbygequmwgsa" path="res://src/game/entities/enemies/necromancer/necromancer.gd" id="2_necro"]
-[ext_resource type="PackedScene" uid="uid://dnqolbevl60vn" path="res://src/game/entities/projectiles/orc_projectile.tscn" id="3_proj"]
+[ext_resource type="PackedScene" uid="uid://c6vwp9m51eghq" path="res://src/game/entities/enemies/necromancer/attacks/blood_projectile.tscn" id="3_proj"]
 [ext_resource type="Texture2D" uid="uid://bmxjw0oqkwupg" path="res://assets/texture/enemies/Necromancer/Necromancer-Sheet.png" id="4_sheet"]
 [ext_resource type="Script" uid="uid://c3cb5th2jfyan" path="res://src/game/entities/enemies/necromancer/NecromancerStateMachine.gd" id="5_sm"]
 [ext_resource type="Script" uid="uid://bgu81g851kkds" path="res://src/game/entities/enemies/necromancer/states/IdleState.gd" id="6_idle"]
@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://4eva3s406r58" path="res://assets/sound/22_orc_jump_1.wav" id="11_hurt"]
 [ext_resource type="AudioStream" uid="uid://yj2pr365qksr" path="res://assets/sound/24_orc_death_spin.wav" id="12_die"]
 [ext_resource type="AudioStream" uid="uid://cd473ke12qp07" path="res://assets/sound/magicsound.mp3" id="13_atk"]
+[ext_resource type="PackedScene" uid="uid://dfir3t0rn4d0x" path="res://src/game/entities/enemies/necromancer/attacks/fire_tornado.tscn" id="15_tornado"]
+[ext_resource type="PackedScene" uid="uid://dvojd1mpl0s10" path="res://src/game/entities/enemies/necromancer/attacks/void_implosion.tscn" id="16_implosion"]
+[ext_resource type="Texture2D" uid="uid://df8qm6luy85yv" path="res://assets/texture/enemies/Necromancer/shield-bubble/lit/grid/sprite-sheet.png" id="17_shield"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_necro"]
 radius = 28.0
@@ -78,6 +81,111 @@ tracks/1/keys = {
 "values": [{
 "args": [0.0],
 "method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cast_current_attack"
+}]
+}
+
+
+[sub_resource type="Animation" id="Animation_attack_implosion"]
+resource_name = "attack_implosion"
+length = 1.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cast_current_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_attack_tornado"]
+resource_name = "attack_tornado"
+length = 1.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cast_current_attack"
 }]
 }
 
@@ -233,6 +341,8 @@ _data = {
 &"RESET": SubResource("Animation_reset"),
 &"alert": SubResource("Animation_alert"),
 &"attack": SubResource("Animation_attack"),
+&"attack_implosion": SubResource("Animation_attack_implosion"),
+&"attack_tornado": SubResource("Animation_attack_tornado"),
 &"die": SubResource("Animation_die"),
 &"hurt": SubResource("Animation_hurt"),
 &"idle": SubResource("Animation_idle"),
@@ -241,9 +351,133 @@ _data = {
 &"walk_alert": SubResource("Animation_walk_alert")
 }
 
+[sub_resource type="Animation" id="Animation_shield_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_shield_active"]
+resource_name = "active"
+length = 1.2
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525, 0.6, 0.675, 0.75, 0.825, 0.9, 0.975, 1.05, 1.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_shield_break"]
+resource_name = "break"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.4, 0.4, 0.9), Color(1, 1, 1, 0.6), Color(1, 0.3, 0.3, 0.3), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shield"]
+_data = {
+&"RESET": SubResource("Animation_shield_reset"),
+&"active": SubResource("Animation_shield_active"),
+&"break": SubResource("Animation_shield_break")
+}
+
 [node name="Necromancer" unique_id=746463665 instance=ExtResource("1_cnixy")]
 position = Vector2(0, -103)
 script = ExtResource("2_necro")
+shield_max_hits = 1
+shield_regen_time = 10.0
+shield_break_grace_time = 0.5
+tornado_scene = ExtResource("15_tornado")
+implosion_scene = ExtResource("16_implosion")
+tornado_cooldown = 8.0
+implosion_cooldown = 7.0
 fire_position_base_x = 55.0
 projectile_scene = ExtResource("3_proj")
 max_hp = 500
@@ -272,6 +506,7 @@ collision_mask = 4
 [node name="CollisionShape2D" parent="DetectionArea" index="0" unique_id=166167539]
 unique_name_in_owner = true
 position = Vector2(0, 50)
+scale = Vector2(1.5, 1.5)
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="5" unique_id=913806316]
 collision_mask = 7
@@ -313,6 +548,28 @@ stream = ExtResource("12_die")
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="." index="10" unique_id=1689410667]
 stream = ExtResource("13_atk")
+
+[node name="ShieldSprite" type="Sprite2D" parent="." index="11" unique_id=6614022]
+position = Vector2(0, 50)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("17_shield")
+hframes = 8
+vframes = 2
+
+[node name="ShieldAnimationPlayer" type="AnimationPlayer" parent="." index="12" unique_id=1265117157]
+libraries/ = SubResource("AnimationLibrary_shield")
+
+[node name="ShieldRegenTimer" type="Timer" parent="." index="13" unique_id=205932651]
+one_shot = true
+
+[node name="ShieldGraceTimer" type="Timer" parent="." index="14" unique_id=662901427]
+one_shot = true
+
+[node name="TornadoCooldownTimer" type="Timer" parent="." index="15" unique_id=1430588506]
+one_shot = true
+
+[node name="ImplosionCooldownTimer" type="Timer" parent="." index="16" unique_id=1143458825]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationEnemy" to="StateMachine" method="_on_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="StateMachine" method="notify_body_entered"]
