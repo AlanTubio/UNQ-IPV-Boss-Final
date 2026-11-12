@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dwovd8cicnuy6" path="res://assets/sound/background/Dark 1.ogg" id="10_5e013"]
 [ext_resource type="PackedScene" uid="uid://bu3j43gipku7q" path="res://src/game/ui/controls_tutorial.tscn" id="11_tutorial"]
 [ext_resource type="PackedScene" uid="uid://co7f3nqdhb5yr" path="res://src/game/entities/enemies/necromancer/necromancer.tscn" id="14_5rc6s"]
+[ext_resource type="AudioStream" uid="uid://1ntpkuqujb83" path="res://assets/sound/background/Action 2.ogg" id="19_d1krm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceowl"]
 texture = ExtResource("6_686t5")
@@ -44,7 +45,7 @@ mouse_cursor = ExtResource("2_sdah7")
 [node name="World" parent="." unique_id=319541539 instance=ExtResource("1_6afhr")]
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
-position = Vector2(164, -31)
+position = Vector2(100, -89)
 
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")
@@ -167,6 +168,11 @@ unique_name_in_owner = true
 stream = ExtResource("10_5e013")
 volume_db = 10.0
 autoplay = true
+parameters/looping = true
+
+[node name="BossBGM" type="AudioStreamPlayer" parent="." unique_id=4836456]
+unique_name_in_owner = true
+stream = ExtResource("19_d1krm")
 parameters/looping = true
 
 [connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
