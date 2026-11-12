@@ -51,12 +51,16 @@ var stamina: float = max_stamina
 
 @export var stamina_recovery_time: float = 5.0
 @export var stamina_recovery_delay: float = 0.5
+@export var hit_invulnerability_time: float = 0.5
+@export var hit_flash_duration: float = 0.08
 
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 
 var projectile_container: Node
 var h_movement_direction: int = 0
 var knockback_velocity: Vector2 = Vector2.ZERO
+var hit_invulnerability_left: float = 0.0
+var hit_flash_tween: Tween
 
 ## Flag de ayuda para saber identificar el estado de actividad
 var dead: bool = false
@@ -67,6 +71,10 @@ func _ready() -> void:
 	weapon_manager.wall_hit.connect(func(): wall_hit.emit())
 	hit.connect(state_machine.notify_hit)
 	hp_changed.connect(state_machine.notify_hp_changed)
+
+
+func _process(delta: float) -> void:
+	hit_invulnerability_left = maxf(hit_invulnerability_left - delta, 0.0)
 
 
 func initialize(_projectile_container: Node = get_parent()) -> void:
@@ -166,8 +174,27 @@ func is_on_floor_raycasted() -> bool:
 # los casos de estados en los cuales no se manejan hits
 func notify_hit(amount: int = 1) -> void:
 	if amount < 0:
+		if hit_invulnerability_left > 0.0 or dead:
+			return
+		hit_invulnerability_left = hit_invulnerability_time
 		hit_sound.play()
+		_play_hit_feedback()
 	hit.emit(amount)
+
+
+func _play_hit_feedback() -> void:
+	if hit_flash_tween:
+		hit_flash_tween.kill()
+	body_pivot.modulate = Color(1.0, 0.35, 0.35)
+	hit_flash_tween = create_tween()
+	hit_flash_tween.tween_property(
+		body_pivot,
+		"modulate",
+		Color.WHITE,
+		hit_flash_duration
+	)
+	var camera: Camera2D = $Camera2D
+	camera.shake()
 
 
 # Y acá se maneja la salud.
