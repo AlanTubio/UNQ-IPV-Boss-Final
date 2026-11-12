@@ -44,7 +44,7 @@ mouse_cursor = ExtResource("2_sdah7")
 [node name="World" parent="." unique_id=319541539 instance=ExtResource("1_6afhr")]
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
-position = Vector2(254, -4745)
+position = Vector2(164, -31)
 
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")
