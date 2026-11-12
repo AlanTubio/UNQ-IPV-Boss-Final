@@ -11,6 +11,8 @@ extends Camera2D
 @export var zoom_speed: float
 
 var target_offset: Vector2
+var shake_time_left: float = 0.0
+var shake_strength: float = 0.0
 
 
 ## Una camarita con comportamiento propio para mostrar las bondades de
@@ -46,3 +48,17 @@ func _physics_process(delta: float) -> void:
 	
 	## Y lo aplicamos con una interpolación entre el zoom actual y el objetivo
 	zoom = lerp(zoom, target_zoom, zoom_speed * delta)
+
+	if shake_time_left > 0.0:
+		shake_time_left -= delta
+		offset += Vector2(
+			randf_range(-shake_strength, shake_strength),
+			randf_range(-shake_strength, shake_strength)
+		)
+	else:
+		shake_strength = 0.0
+
+
+func shake(strength: float = 4.0, duration: float = 0.12) -> void:
+	shake_strength = strength
+	shake_time_left = duration
