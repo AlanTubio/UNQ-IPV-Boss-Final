@@ -1,238 +1,233 @@
-[gd_scene format=4 uid="uid://bcontrolstutorial1"]
+[gd_scene format=3 uid="uid://bu3j43gipku7q"]
 
-[ext_resource type="Script" uid="uid://bcontrols_tutorial_gd1" path="res://src/game/ui/controls_tutorial.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/texture/ui/menu/Frame_notice_v1.png" id="2_frame"]
-[ext_resource type="FontFile" path="res://assets/font/EBGaramond-Bold.ttf" id="3_font_title"]
-[ext_resource type="FontFile" path="res://assets/font/EBGaramond-ExtraBold.ttf" id="3_font_body"]
-[ext_resource type="Texture2D" path="res://assets/texture/ui/keyprompts/A_Key_Dark.png" id="4_a"]
-[ext_resource type="Texture2D" path="res://assets/texture/ui/keyprompts/D_Key_Dark.png" id="5_d"]
-[ext_resource type="Texture2D" path="res://assets/texture/ui/keyprompts/Space_Key_Dark.png" id="6_space"]
-[ext_resource type="Texture2D" path="res://assets/texture/ui/keyprompts/Shift_Key_Dark.png" id="7_shift"]
-[ext_resource type="Texture2D" path="res://assets/texture/ui/keyprompts/Q_Key_Dark.png" id="8_q"]
-[ext_resource type="Texture2D" path="res://assets/texture/player/weapon/slash_effect/Frames/Slash_color2_frame2.png" id="9_slash"]
-[ext_resource type="Texture2D" path="res://assets/texture/map/foto_pared.png" id="10_wall"]
+[ext_resource type="Script" path="res://src/game/ui/controls_tutorial.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cun03wbc2s5nc" path="res://assets/texture/ui/menu/Frame_input_red.png" id="2_pek8o"]
+[ext_resource type="FontFile" uid="uid://b1pdb11g1y8d5" path="res://assets/font/EBGaramond-ExtraBold.ttf" id="3_font_body"]
+[ext_resource type="FontFile" uid="uid://bkikm8y3087wa" path="res://assets/font/EBGaramond-Bold.ttf" id="3_font_title"]
+[ext_resource type="Texture2D" uid="uid://du3klhn32kiai" path="res://assets/texture/ui/keyprompts/A_Key_Dark.png" id="4_a"]
+[ext_resource type="Texture2D" uid="uid://bshvrxfxs2feh" path="res://assets/texture/ui/keyprompts/D_Key_Dark.png" id="5_d"]
+[ext_resource type="Texture2D" uid="uid://hnsktf63rjvu" path="res://assets/texture/ui/keyprompts/Space_Key_Dark.png" id="6_space"]
+[ext_resource type="Texture2D" uid="uid://b80aljmglhpx0" path="res://assets/texture/ui/keyprompts/Shift_Key_Dark.png" id="7_shift"]
+[ext_resource type="Texture2D" uid="uid://b7wnvthggamdl" path="res://assets/texture/ui/keyprompts/Q_Key_Dark.png" id="8_q"]
+[ext_resource type="Texture2D" uid="uid://dja12ienr378q" path="res://assets/texture/player/weapon/slash_effect/Frames/Slash_color2_frame2.png" id="9_slash"]
+[ext_resource type="Texture2D" uid="uid://cqqm30jeeipcs" path="res://assets/texture/map/foto_pared.png" id="10_wall"]
 
-[node name="ControlsTutorial" type="Node2D"]
+[node name="ControlsTutorial" type="Node2D" unique_id=1500879594]
 script = ExtResource("1_script")
 
-[node name="ClipBox" type="Control" parent="."]
+[node name="ClipBox" type="Control" parent="." unique_id=608491484]
 clip_contents = true
+layout_mode = 3
+anchors_preset = 0
 offset_left = -240.0
 offset_top = -460.0
 offset_right = 240.0
-offset_bottom = 0.0
 mouse_filter = 2
 
-[node name="ScrollRoot" type="Node2D" parent="ClipBox"]
+[node name="ScrollRoot" type="Node2D" parent="ClipBox" unique_id=1448164936]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="ClipBox/ScrollRoot"]
-texture = ExtResource("2_frame")
-offset_left = 0.0
-offset_top = 0.0
+[node name="NinePatchRect" type="NinePatchRect" parent="ClipBox/ScrollRoot" unique_id=1006111155]
 offset_right = 480.0
 offset_bottom = 460.0
+texture = ExtResource("2_pek8o")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
-draw_center = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ClipBox/ScrollRoot"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ClipBox/ScrollRoot" unique_id=738337170]
 offset_left = 20.0
 offset_top = 14.0
 offset_right = 460.0
 offset_bottom = 446.0
 theme_override_constants/separation = 10
-alignment = 0
 
-[node name="Title" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer"]
+[node name="Title" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=667841618]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.85, 0.5, 1)
 theme_override_fonts/font = ExtResource("3_font_title")
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.95, 0.85, 0.5, 1)
 text = "~ Controles ~"
 horizontal_alignment = 1
 
-[node name="Separator" type="HSeparator" parent="ClipBox/ScrollRoot/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/separator_color = Color(0.6, 0.5, 0.3, 0.8)
+[node name="Separator" type="HSeparator" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=772679015]
 custom_minimum_size = Vector2(0, 6)
-
-[node name="RowMove" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer"]
 layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 6
 
-[node name="KeyA" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove"]
+[node name="RowMove" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=436516456]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="KeyA" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove" unique_id=1274928729]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 texture = ExtResource("4_a")
-custom_minimum_size = Vector2(36, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="SlashLabel" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove"]
+[node name="SlashLabel" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove" unique_id=277113078]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 text = "/"
 vertical_alignment = 1
 
-[node name="KeyD" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove"]
+[node name="KeyD" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove" unique_id=1117857835]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 texture = ExtResource("5_d")
-custom_minimum_size = Vector2(36, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LabelMove" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove"]
+[node name="LabelMove" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowMove" unique_id=247353391]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 text = "  Moverse"
 vertical_alignment = 1
 
-[node name="RowJump" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer"]
+[node name="RowJump" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=862030850]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="KeySpace" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowJump"]
+[node name="KeySpace" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowJump" unique_id=1518247288]
+custom_minimum_size = Vector2(64, 36)
 layout_mode = 2
 texture = ExtResource("6_space")
-custom_minimum_size = Vector2(64, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LabelJump" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowJump"]
+[node name="LabelJump" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowJump" unique_id=315417811]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 text = "  Saltar"
 vertical_alignment = 1
 
-[node name="RowDoubleJump" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer"]
+[node name="RowDoubleJump" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=622162129]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="KeySpace2" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowDoubleJump"]
+[node name="KeySpace2" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowDoubleJump" unique_id=147872235]
+custom_minimum_size = Vector2(64, 36)
 layout_mode = 2
 texture = ExtResource("6_space")
-custom_minimum_size = Vector2(64, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="SlashLabel2" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowDoubleJump"]
+[node name="SlashLabel2" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowDoubleJump" unique_id=853156549]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 text = " x2"
 vertical_alignment = 1
 
-[node name="LabelDoubleJump" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowDoubleJump"]
+[node name="LabelDoubleJump" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowDoubleJump" unique_id=1223154746]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 text = "  Doble salto"
 vertical_alignment = 1
 
-[node name="RowDash" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer"]
+[node name="RowDash" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=22240133]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="KeyShift" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowDash"]
+[node name="KeyShift" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowDash" unique_id=228813652]
+custom_minimum_size = Vector2(64, 36)
 layout_mode = 2
 texture = ExtResource("7_shift")
-custom_minimum_size = Vector2(64, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LabelDash" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowDash"]
+[node name="LabelDash" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowDash" unique_id=589329134]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 text = "  Dash"
 vertical_alignment = 1
 
-[node name="RowWallJump" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer"]
+[node name="RowWallJump" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=1347690817]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="SlashIcon" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump"]
+[node name="SlashIcon" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump" unique_id=563797039]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 texture = ExtResource("9_slash")
-custom_minimum_size = Vector2(36, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PlusLabel" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump"]
+[node name="PlusLabel" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump" unique_id=112192591]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 text = " + "
 vertical_alignment = 1
 
-[node name="WallIcon" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump"]
-layout_mode = 2
+[node name="WallIcon" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump" unique_id=217320195]
 texture_filter = 1
-texture = ExtResource("10_wall")
 custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("10_wall")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PlusLabel2" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump"]
+[node name="PlusLabel2" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump" unique_id=418067236]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.6, 0.6, 0.5, 1)
 text = " + "
 vertical_alignment = 1
 
-[node name="KeySpaceWall" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump"]
+[node name="KeySpaceWall" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump" unique_id=1789507707]
+custom_minimum_size = Vector2(64, 36)
 layout_mode = 2
 texture = ExtResource("6_space")
-custom_minimum_size = Vector2(64, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LabelWallJump" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump"]
+[node name="LabelWallJump" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWallJump" unique_id=439467905]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 text = "  Wall Jump"
 vertical_alignment = 1
 
-[node name="Separator2" type="HSeparator" parent="ClipBox/ScrollRoot/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/separator_color = Color(0.6, 0.5, 0.3, 0.8)
+[node name="Separator2" type="HSeparator" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=556551295]
 custom_minimum_size = Vector2(0, 6)
-
-[node name="RowWeapon" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer"]
 layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 6
 
-[node name="KeyQ" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWeapon"]
+[node name="RowWeapon" type="HBoxContainer" parent="ClipBox/ScrollRoot/VBoxContainer" unique_id=1787392828]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="KeyQ" type="TextureRect" parent="ClipBox/ScrollRoot/VBoxContainer/RowWeapon" unique_id=505559974]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 texture = ExtResource("8_q")
-custom_minimum_size = Vector2(36, 36)
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LabelWeapon" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWeapon"]
+[node name="LabelWeapon" type="Label" parent="ClipBox/ScrollRoot/VBoxContainer/RowWeapon" unique_id=687929876]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
 text = "  Cambiar arma"
 vertical_alignment = 1
