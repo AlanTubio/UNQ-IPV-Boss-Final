@@ -2,6 +2,7 @@ extends NecromancerState
 
 
 func enter() -> void:
+	GameState.notify_boss_alert(false)
 	character.dead = true
 	character.collision_layer = 0
 	character.collision_mask = 0

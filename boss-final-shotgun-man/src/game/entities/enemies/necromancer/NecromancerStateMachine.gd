@@ -4,7 +4,6 @@ class_name NecromancerStateMachine
 @export var character: Necromancer
 @export var dead_state: NecromancerState
 
-
 func _setup() -> void:
 	for state: NecromancerState in states_list:
 		state.character = character
@@ -14,10 +13,12 @@ func _setup() -> void:
 
 func notify_body_entered(body: Node) -> void:
 	current_state.handle_event(&"body_entered", body)
+	GameState.notify_boss_alert(true)
 
 
 func notify_body_exited(body: Node) -> void:
 	current_state.handle_event(&"body_exited", body)
+	GameState.notify_boss_alert(false)
 
 
 func notify_hit(amount: int) -> void:

@@ -32,3 +32,8 @@ signal input_map_changed()
 
 func notify_input_map_changed() -> void:
 	emit_signal("input_map_changed")
+
+signal boss_alert_changed(is_alert: bool)
+
+func notify_boss_alert(is_alert: bool) -> void:
+	boss_alert_changed.emit(is_alert)

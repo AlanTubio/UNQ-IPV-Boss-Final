@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b7wnvthggamdl" path="res://assets/texture/ui/keyprompts/Q_Key_Dark.png" id="8_q"]
 [ext_resource type="Texture2D" uid="uid://dja12ienr378q" path="res://assets/texture/player/weapon/slash_effect/Frames/Slash_color2_frame2.png" id="9_slash"]
 [ext_resource type="Texture2D" uid="uid://cqqm30jeeipcs" path="res://assets/texture/map/foto_pared.png" id="10_wall"]
+[ext_resource type="AudioStream" uid="uid://dxjibr6adoays" path="res://assets/sound/ui/UI Message Appear 01.wav" id="12_rb4j1"]
 
 [node name="ControlsTutorial" type="Node2D" unique_id=1500879594]
 script = ExtResource("1_script")
@@ -231,3 +232,6 @@ theme_override_fonts/font = ExtResource("3_font_body")
 theme_override_font_sizes/font_size = 26
 text = "  Cambiar arma"
 vertical_alignment = 1
+
+[node name="UISound" type="AudioStreamPlayer2D" parent="." unique_id=1693799240]
+stream = ExtResource("12_rb4j1")
