@@ -528,6 +528,7 @@ stream = ExtResource("10_walk")
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." index="8" unique_id=2068695058]
 stream = ExtResource("11_hurt")
+volume_db = -5.0
 
 [node name="Die" type="AudioStreamPlayer2D" parent="." index="9" unique_id=1021939028]
 stream = ExtResource("12_die")

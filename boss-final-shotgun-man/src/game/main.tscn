@@ -45,7 +45,7 @@ mouse_cursor = ExtResource("2_sdah7")
 [node name="World" parent="." unique_id=319541539 instance=ExtResource("1_6afhr")]
 
 [node name="Player" parent="." unique_id=1939487036 instance=ExtResource("1_ie5yk")]
-position = Vector2(100, -89)
+position = Vector2(64, -32)
 
 [node name="MouseCamera" type="Camera2D" parent="." unique_id=1111642568]
 script = ExtResource("3_6afhr")
@@ -173,6 +173,7 @@ parameters/looping = true
 [node name="BossBGM" type="AudioStreamPlayer" parent="." unique_id=4836456]
 unique_name_in_owner = true
 stream = ExtResource("19_d1krm")
+volume_db = -5.0
 parameters/looping = true
 
 [connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
