@@ -36,9 +36,7 @@ var tornado_target_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	max_hp = 500
-	hp = max_hp
-	
+	super._ready()
 	shield_hits_remaining = shield_max_hits
 	shield_active = true
 	is_shield_breaking = false
@@ -190,3 +188,7 @@ func _get_container() -> Node:
 	if _projectile_container == null:
 		_projectile_container = get_parent()
 	return _projectile_container
+
+func _remove() -> void:
+	get_tree().call_group("goal", "activate")
+	super._remove()

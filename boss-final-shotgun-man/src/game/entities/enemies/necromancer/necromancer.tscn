@@ -466,7 +466,7 @@ implosion_cooldown = 7.0
 implosion_offset_y = 30.0
 fire_position_base_x = 55.0
 projectile_scene = ExtResource("3_proj")
-max_hp = 500
+max_hp = 5000
 
 [node name="FirePosition" type="Marker2D" parent="." index="0" unique_id=726185889]
 position = Vector2(34, 28)

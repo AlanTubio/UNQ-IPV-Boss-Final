@@ -20,14 +20,14 @@ var target: Node2D
 var _projectile_container: Node
 
 @export var max_hp: int = 100
-var hp: int = max_hp
+var hp: int
 @export var gravity: float = 625.0
 
 ## Flag de ayuda para saber identificar el estado de actividad
 var dead: bool = false
 
 func _ready() -> void:
-	pass
+	hp = max_hp
 
 
 func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
@@ -84,6 +84,7 @@ func notify_hit(amount: int = 1) -> void:
 func _sum_hp(amount: int) -> void:
 	hp = clamp(hp + amount, 0, max_hp)
 	hp_changed.emit(hp, max_hp)
+	print("Enemy HP: %d/%d" % [hp, max_hp])
 	
 func _remove() -> void:
 	get_parent().remove_child(self)

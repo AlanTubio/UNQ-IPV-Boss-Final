@@ -176,7 +176,7 @@ pathfinding = NodePath("../AstarTileMap")
 position = Vector2(-310, 300)
 
 [node name="Goal" parent="." unique_id=1125136970 instance=ExtResource("5_guohj")]
-position = Vector2(337, -5613)
+position = Vector2(341, 11)
 
 [node name="MainBGM" type="AudioStreamPlayer" parent="." unique_id=2056130912]
 unique_name_in_owner = true

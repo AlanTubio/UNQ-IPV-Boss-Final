@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d0gbsq4l5nfv2" path="res://src/game/entities/goal/Goal.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dlgixg4od5gn3" path="res://assets/texture/goal/Obelisk.png" id="2_ooym5"]
 [ext_resource type="Texture2D" uid="uid://biatxv4ochgbl" path="res://assets/texture/goal/Obelisk_effects.png" id="3_1sykm"]
+[ext_resource type="AudioStream" uid="uid://brt3vnaijr2pk" path="res://assets/sound/goal/Glyph Activation Warm Aura.wav" id="4_1sykm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crbc4"]
 atlas = ExtResource("2_ooym5")
@@ -319,7 +320,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(80, 109.7688)
 
-[node name="Goal" type="Area2D" unique_id=1125136970]
+[node name="Goal" type="Area2D" unique_id=1125136970 groups=["goal"]]
 texture_filter = 1
 scale = Vector2(1.2, 1.2)
 collision_layer = 0
@@ -331,11 +332,14 @@ script = ExtResource("1")
 position = Vector2(0, -61)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("8")
-animation = &"idle"
+animation = &"idle_open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=802119426]
 position = Vector2(0, -55.1156)
 shape = SubResource("1")
+
+[node name="ObeliskSound" type="AudioStreamPlayer2D" parent="." unique_id=1497557598]
+stream = ExtResource("4_1sykm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="Portal" to="." method="_on_portal_animation_finished"]
