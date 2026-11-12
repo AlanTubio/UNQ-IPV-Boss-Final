@@ -192,3 +192,18 @@ func _get_container() -> Node:
 func _remove() -> void:
 	get_tree().call_group("goal", "activate")
 	super._remove()
+
+
+
+func _can_see_target() -> bool:
+	if target == null:
+		return false
+
+	# 1. Si el tornado está listo y el jugador está en el piso,
+	# ignoramos el raycast para que pueda castearlo a través del suelo/paredes
+	if can_cast_tornado() and _is_target_on_floor():
+		return true
+
+	# 2. Para los demás ataques (como las balas de sangre), 
+	# usamos el raycast normal del padre
+	return super._can_see_target()
