@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://87upwficjeky" path="res://src/game/entities/enemies/orcShaman/orc_shaman.tscn" id="8_tbcyw"]
 [ext_resource type="AudioStream" uid="uid://dwovd8cicnuy6" path="res://assets/sound/background/Dark 1.ogg" id="10_5e013"]
 [ext_resource type="PackedScene" uid="uid://bu3j43gipku7q" path="res://src/game/ui/controls_tutorial.tscn" id="11_tutorial"]
+[ext_resource type="PackedScene" uid="uid://co7f3nqdhb5yr" path="res://src/game/entities/enemies/necromancer/necromancer.tscn" id="14_5rc6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceowl"]
 texture = ExtResource("6_686t5")
@@ -68,11 +69,11 @@ navigation_enabled = false
 connection_type = 1
 
 [node name="OrcSpawner" type="Marker2D" parent="Enemies" unique_id=1201188052 node_paths=PackedStringArray("pathfinding")]
-position = Vector2(283, -809)
+position = Vector2(298, -909)
 script = ExtResource("7_ceowl")
-enemy_scene = ExtResource("8_tbcyw")
+enemy_scene = ExtResource("14_5rc6s")
 amount = 1
-extents = Vector2(150, 0)
+extents = Vector2(100, 0)
 pathfinding = NodePath("../AstarTileMap")
 
 [node name="OrcSpawner2" type="Marker2D" parent="Enemies" unique_id=1482748549 node_paths=PackedStringArray("pathfinding")]
@@ -175,7 +176,7 @@ pathfinding = NodePath("../AstarTileMap")
 position = Vector2(-310, 300)
 
 [node name="Goal" parent="." unique_id=1125136970 instance=ExtResource("5_guohj")]
-position = Vector2(337, -5613)
+position = Vector2(341, 11)
 
 [node name="MainBGM" type="AudioStreamPlayer" parent="." unique_id=2056130912]
 unique_name_in_owner = true
