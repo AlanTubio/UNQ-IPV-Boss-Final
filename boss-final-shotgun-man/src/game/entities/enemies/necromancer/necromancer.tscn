@@ -458,15 +458,15 @@ position = Vector2(0, -103)
 script = ExtResource("2_necro")
 shield_max_hits = 1
 shield_regen_time = 10.0
-shield_break_grace_time = 0.5
+shield_break_grace_time = 0.2
 tornado_scene = ExtResource("15_tornado")
 implosion_scene = ExtResource("16_implosion")
-tornado_cooldown = 8.0
+tornado_cooldown = 5.0
 implosion_cooldown = 7.0
 implosion_offset_y = 30.0
 fire_position_base_x = 55.0
 projectile_scene = ExtResource("3_proj")
-max_hp = 5000
+max_hp = 500
 
 [node name="FirePosition" type="Marker2D" parent="." index="0" unique_id=726185889]
 position = Vector2(34, 28)
