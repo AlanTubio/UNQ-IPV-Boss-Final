@@ -9,10 +9,7 @@ class_name VoidImplosion
 var _has_damaged: bool = false
 
 func _ready() -> void:
-	collision_layer = 0
-	collision_mask = 4
 	monitoring = false
-	body_entered.connect(_on_body_entered)
 	animation_player.animation_finished.connect(_on_animation_finished)
 	animation_player.play(&"implode")
 
@@ -25,7 +22,6 @@ func enable_damage() -> void:
 
 func disable_damage() -> void:
 	monitoring = false
-
 
 func _on_body_entered(body: Node2D) -> void:
 	if not _has_damaged and body.has_method("notify_hit"):

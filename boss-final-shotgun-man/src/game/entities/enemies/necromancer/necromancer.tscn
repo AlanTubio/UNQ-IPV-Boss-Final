@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cxisdtebhpv45" path="res://src/game/entities/enemies/enemy.tscn" id="1_cnixy"]
 [ext_resource type="Script" uid="uid://qbygequmwgsa" path="res://src/game/entities/enemies/necromancer/necromancer.gd" id="2_necro"]
-[ext_resource type="PackedScene" uid="uid://c6vwp9m51eghq" path="res://src/game/entities/enemies/necromancer/attacks/blood_projectile.tscn" id="3_proj"]
+[ext_resource type="PackedScene" uid="uid://c6vwqam51eghq" path="res://src/game/entities/enemies/necromancer/attacks/blood_projectile.tscn" id="3_proj"]
 [ext_resource type="Texture2D" uid="uid://bmxjw0oqkwupg" path="res://assets/texture/enemies/Necromancer/Necromancer-Sheet.png" id="4_sheet"]
 [ext_resource type="Script" uid="uid://c3cb5th2jfyan" path="res://src/game/entities/enemies/necromancer/NecromancerStateMachine.gd" id="5_sm"]
 [ext_resource type="Script" uid="uid://bgu81g851kkds" path="res://src/game/entities/enemies/necromancer/states/IdleState.gd" id="6_idle"]
@@ -12,9 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://cpxcg05pykht2" path="res://assets/sound/16_human_walk_stone_1.wav" id="10_walk"]
 [ext_resource type="AudioStream" uid="uid://4eva3s406r58" path="res://assets/sound/22_orc_jump_1.wav" id="11_hurt"]
 [ext_resource type="AudioStream" uid="uid://yj2pr365qksr" path="res://assets/sound/24_orc_death_spin.wav" id="12_die"]
-[ext_resource type="AudioStream" uid="uid://cd473ke12qp07" path="res://assets/sound/magicsound.mp3" id="13_atk"]
 [ext_resource type="PackedScene" uid="uid://dfir3t0rn4d0x" path="res://src/game/entities/enemies/necromancer/attacks/fire_tornado.tscn" id="15_tornado"]
+[ext_resource type="AudioStream" uid="uid://cpmqd6pl1fx43" path="res://assets/sound/necromancer/Activate Glyph Forcefield.wav" id="15_ytg3x"]
 [ext_resource type="PackedScene" uid="uid://dvojd1mpl0s10" path="res://src/game/entities/enemies/necromancer/attacks/void_implosion.tscn" id="16_implosion"]
+[ext_resource type="AudioStream" uid="uid://r18butu7ormg" path="res://assets/sound/necromancer/Arcane Beacon.wav" id="17_3kwdi"]
+[ext_resource type="AudioStream" uid="uid://bibrsnbwq6d1q" path="res://assets/sound/necromancer/PUNCH_SQUELCH_HEAVY_05.wav" id="17_6b7ir"]
 [ext_resource type="Texture2D" uid="uid://df8qm6luy85yv" path="res://assets/texture/enemies/Necromancer/shield-bubble/lit/grid/sprite-sheet.png" id="17_shield"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_necro"]
@@ -98,7 +100,6 @@ tracks/2/keys = {
 }]
 }
 
-
 [sub_resource type="Animation" id="Animation_attack_implosion"]
 resource_name = "attack_implosion"
 length = 1.3
@@ -118,24 +119,10 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -163,24 +150,10 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -431,6 +404,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShieldSprite:texture_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_shield_break"]
 resource_name = "break"
@@ -478,6 +463,7 @@ tornado_scene = ExtResource("15_tornado")
 implosion_scene = ExtResource("16_implosion")
 tornado_cooldown = 8.0
 implosion_cooldown = 7.0
+implosion_offset_y = 30.0
 fire_position_base_x = 55.0
 projectile_scene = ExtResource("3_proj")
 max_hp = 500
@@ -547,9 +533,10 @@ stream = ExtResource("11_hurt")
 stream = ExtResource("12_die")
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="." index="10" unique_id=1689410667]
-stream = ExtResource("13_atk")
+stream = ExtResource("15_ytg3x")
 
 [node name="ShieldSprite" type="Sprite2D" parent="." index="11" unique_id=6614022]
+texture_filter = 1
 position = Vector2(0, 50)
 scale = Vector2(1.8, 1.8)
 texture = ExtResource("17_shield")
@@ -570,6 +557,13 @@ one_shot = true
 
 [node name="ImplosionCooldownTimer" type="Timer" parent="." index="16" unique_id=1143458825]
 one_shot = true
+
+[node name="HitSound" parent="." index="17" unique_id=1134295364]
+texture_filter = 1
+stream = ExtResource("17_6b7ir")
+
+[node name="ImplotionSound" type="AudioStreamPlayer2D" parent="." index="18" unique_id=598561085]
+stream = ExtResource("17_3kwdi")
 
 [connection signal="animation_finished" from="AnimationEnemy" to="StateMachine" method="_on_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="StateMachine" method="notify_body_entered"]

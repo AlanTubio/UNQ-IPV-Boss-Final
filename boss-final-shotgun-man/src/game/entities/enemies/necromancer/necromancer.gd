@@ -12,6 +12,7 @@ class_name Necromancer
 
 @export var tornado_cooldown: float = 8.0
 @export var implosion_cooldown: float = 7.0
+@export var implosion_offset_y: float = 30.0
 
 @export var fire_position_base_x: float = 55.0
 
@@ -22,6 +23,8 @@ class_name Necromancer
 
 @onready var tornado_cooldown_timer: Timer = $TornadoCooldownTimer
 @onready var implosion_cooldown_timer: Timer = $ImplosionCooldownTimer
+
+@onready var audio_implotion: AudioStreamPlayer2D = $ImplotionSound
 
 var shield_active: bool = true
 var shield_hits_remaining: int = 1
@@ -49,11 +52,10 @@ func _ready() -> void:
 func _look_at_target() -> void:
 	super._look_at_target()
 	if fire_position:
-		fire_position.position.x = -abs(fire_position_base_x) if body.flip_h else abs(fire_position_base_x)
+		fire_position.position.x = - abs(fire_position_base_x) if body.flip_h else abs(fire_position_base_x)
 
 
 func notify_hit(amount: int = 1) -> void:
-	# Si está en periodo de gracia tras romperse el escudo, descarta cualquier otro daño
 	if is_shield_breaking:
 		return
 	
@@ -95,7 +97,6 @@ func _is_target_on_floor() -> bool:
 	return false
 
 
-## Proyecta un rayo hacia abajo para encontrar la superficie exacta del suelo (Capa 1: Piso)
 func _get_ground_position(origin: Vector2) -> Vector2:
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var query := PhysicsRayQueryParameters2D.create(origin - Vector2(0, 10), origin + Vector2(0, 400), 1)
@@ -109,7 +110,6 @@ func can_cast_tornado() -> bool:
 	return tornado_scene != null and tornado_cooldown_timer.is_stopped()
 
 
-## Dispara el tornado de inmediato al detectar que el jugador tocó el suelo
 func start_tornado_attack() -> void:
 	current_attack = &"tornado"
 	tornado_cooldown_timer.start(tornado_cooldown)
@@ -118,7 +118,6 @@ func start_tornado_attack() -> void:
 	_play_animation(&"attack_tornado")
 
 
-## Decide qué ataque realizar según el estado del jugador y cooldowns
 func prepare_next_attack() -> StringName:
 	if target == null:
 		current_attack = &"projectile"
@@ -126,7 +125,6 @@ func prepare_next_attack() -> StringName:
 	
 	var on_floor: bool = _is_target_on_floor()
 	
-	# 1. Si está en el piso: prioridad total al tornado
 	if on_floor:
 		if can_cast_tornado():
 			current_attack = &"tornado"
@@ -137,18 +135,15 @@ func prepare_next_attack() -> StringName:
 			current_attack = &"projectile"
 			return &"attack"
 	
-	# 2. Si está en el aire: NUNCA lanza tornado
 	if implosion_cooldown_timer.is_stopped():
 		current_attack = &"implosion"
 		implosion_cooldown_timer.start(implosion_cooldown)
 		return &"attack_implosion"
 	
-	# 3. Ataque predeterminado: proyectil de sangre
 	current_attack = &"projectile"
 	return &"attack"
 
 
-## Ejecutado desde la animación en el segundo 0.8 (momento culminante del casteo)
 func cast_current_attack() -> void:
 	match current_attack:
 		&"projectile":
@@ -183,11 +178,12 @@ func _cast_tornado() -> void:
 
 
 func _cast_implosion() -> void:
+	audio_implotion.play()
 	if implosion_scene == null or target == null:
 		return
 	var implosion: Node = implosion_scene.instantiate()
 	_get_container().add_child(implosion)
-	implosion.global_position = target.global_position
+	implosion.global_position = target.global_position + Vector2(0, -implosion_offset_y)
 
 
 func _get_container() -> Node:

@@ -12,17 +12,12 @@ class_name FireTornado
 var _bodies_inside: Dictionary = {}
 
 func _ready() -> void:
-	collision_layer = 0
-	collision_mask = 4
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-	
 	duration_timer.wait_time = duration
 	duration_timer.one_shot = true
-	duration_timer.timeout.connect(_on_duration_timeout)
 	duration_timer.start()
 	
-	animation_player.play(&"spin")
+	animation_player.play(&"start")
+	animation_player.queue(&"spin")
 
 
 func _physics_process(delta: float) -> void:
@@ -54,3 +49,4 @@ func _on_duration_timeout() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(queue_free)
+	animation_player.play(&"end")
