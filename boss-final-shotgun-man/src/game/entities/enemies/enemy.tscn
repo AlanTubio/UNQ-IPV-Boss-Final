@@ -30,3 +30,7 @@ shape = SubResource("CircleShape2D_lg0lk")
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1134295364]
 stream = ExtResource("2_pnjdb")
 volume_db = -10.0
+
+[node name="FlinchTimer" type="Timer" parent="." unique_id=486235999]
+wait_time = 3.0
+one_shot = true

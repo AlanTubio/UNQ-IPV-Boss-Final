@@ -14,7 +14,7 @@ signal hp_changed(hp, max_hp)
 @export var target_aim_offset: Vector2 = Vector2(0, -45)
 
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
-
+@onready var flinch_timer: Timer = $FlinchTimer
 
 var target: Node2D
 var _projectile_container: Node
