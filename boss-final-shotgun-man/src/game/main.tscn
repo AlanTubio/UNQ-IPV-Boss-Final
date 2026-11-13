@@ -157,14 +157,6 @@ amount = 1
 extents = Vector2(30, 0)
 pathfinding = NodePath("../AstarTileMap")
 
-[node name="BossSpawner2" type="Marker2D" parent="Enemies" unique_id=635134866 node_paths=PackedStringArray("pathfinding")]
-position = Vector2(343, -326)
-script = ExtResource("7_ceowl")
-enemy_scene = ExtResource("14_5rc6s")
-amount = 1
-extents = Vector2(30, 0)
-pathfinding = NodePath("../AstarTileMap")
-
 [node name="ControlsTutorial" parent="." unique_id=2010001010 instance=ExtResource("11_tutorial")]
 position = Vector2(-310, 300)
 
