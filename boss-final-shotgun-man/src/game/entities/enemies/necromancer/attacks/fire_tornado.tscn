@@ -234,7 +234,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_pwhg1"]
 resource_name = "start"
-length = 0.12
+length = 0.12000000000000001
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -346,6 +346,7 @@ _data = {
 [node name="FireTornado" type="Area2D" unique_id=453310944]
 collision_layer = 0
 collision_mask = 4
+monitoring = false
 script = ExtResource("1_tornado")
 damage_cooldown = 1.5
 
@@ -356,11 +357,11 @@ shape = SubResource("CapsuleShape2D_xw46v")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=20137885]
 texture_filter = 1
-position = Vector2(0, -120)
+position = Vector2(0, -97)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_qc660")
+texture = ExtResource("2_xw46v")
 hframes = 8
-vframes = 3
+vframes = 2
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1159934478]
@@ -377,4 +378,5 @@ stream = ExtResource("4_qc660")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timeout"]

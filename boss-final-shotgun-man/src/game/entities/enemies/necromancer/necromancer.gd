@@ -150,7 +150,7 @@ func cast_current_attack() -> void:
 			_cast_tornado()
 		&"implosion":
 			_cast_implosion()
-
+	current_attack = &""
 
 func _cast_projectile() -> void:
 	if projectile_scene == null or target == null:
@@ -192,7 +192,6 @@ func _get_container() -> Node:
 func _remove() -> void:
 	get_tree().call_group("goal", "activate")
 	super._remove()
-
 
 
 func _can_see_target() -> bool:

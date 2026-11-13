@@ -12,9 +12,9 @@ class_name FireTornado
 var _bodies_inside: Dictionary = {}
 
 func _ready() -> void:
+	monitoring = false
 	duration_timer.wait_time = duration
 	duration_timer.one_shot = true
-	duration_timer.start()
 	
 	animation_player.play(&"start")
 	animation_player.queue(&"spin")
@@ -50,3 +50,9 @@ func _on_duration_timeout() -> void:
 	tween.tween_property(self, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(queue_free)
 	animation_player.play(&"end")
+
+
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if anim_name == &"spin":
+		monitoring = true
+		duration_timer.start()
