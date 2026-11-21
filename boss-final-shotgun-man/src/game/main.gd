@@ -18,6 +18,8 @@ signal next_level_requested()
 func _ready() -> void:
 	Input.set_custom_mouse_cursor(mouse_cursor, Input.CURSOR_ARROW, mouse_cursor.get_size() / 2)
 	GameState.boss_alert_changed.connect(_on_boss_alert_changed)
+	AudioServer.register_stream_as_sample(main_BGM.stream)
+	AudioServer.register_stream_as_sample(boss_BGM.stream)
 
 
 # Funciones que hacen de interfaz para las señales
