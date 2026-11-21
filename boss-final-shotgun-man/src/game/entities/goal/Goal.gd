@@ -9,7 +9,6 @@ var won: bool = false
 func _ready() -> void:
 	hide()
 	monitoring = false
-	body_entered.connect(_on_body_entered)
 
 
 func _on_body_entered(_body: Node) -> void:

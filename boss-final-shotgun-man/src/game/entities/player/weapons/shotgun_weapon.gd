@@ -39,12 +39,12 @@ func exit() -> void:
 	super.exit()
 
 
-func update_weapon(_delta: float, character: Node, can_attack: bool = true) -> void:
+func update_weapon(_delta: float, _character: Node, can_attack: bool = true) -> void:
 	if not can_attack:
 		return
 
 	# Orientamos la escopeta hacia el mouse en cada frame
-	_aim_at_mouse(character)
+	_aim_at_mouse()
 
 	if attacks_anim.is_playing() and attacks_anim.current_animation != &"RESET":
 		return
@@ -55,13 +55,12 @@ func update_weapon(_delta: float, character: Node, can_attack: bool = true) -> v
 	if Input.is_action_just_pressed(&"attack_weapon1"):
 		attacks_anim.play(&"shoot")
 		shoot_sound.play()
-		_fire(character)
+		_fire()
 		shoot_cooldown.start()
 
 
 ## Orienta el pivot de la escopeta hacia el mouse.
-## Tambien selecciona la textura según si el personaje está en el aire o no.
-func _aim_at_mouse(character: Node) -> void:
+func _aim_at_mouse() -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var aiming_left: bool = mouse_pos.x < global_position.x
 
@@ -77,7 +76,7 @@ func _aim_at_mouse(character: Node) -> void:
 
 
 ## Instancia los pellets en el contenedor de proyectiles con el spread del cono.
-func _fire(character: Node) -> void:
+func _fire() -> void:
 	if bullet_scene == null or projectile_container == null:
 		return
 

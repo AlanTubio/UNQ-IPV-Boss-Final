@@ -44,11 +44,9 @@ func _on_restart_requested() -> void:
 # 		main_BGM.play()
 
 func _on_boss_alert_changed(is_alert: bool) -> void:
-	if is_alert:
-		if !boss_BGM.playing:
-			boss_BGM.play()
-			main_BGM.stop()
-	else:
-		if !main_BGM.playing:
+	if is_alert && !boss_BGM.playing:
+		main_BGM.stop()
+		boss_BGM.play()
+	elif !is_alert && !main_BGM.playing:
 			boss_BGM.stop()
 			main_BGM.play()
