@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://crobngs1wj21p"]
+
+[ext_resource type="Script" uid="uid://dm03y8hrolqa1" path="res://src/game/ui/tutorial/tutorial_trigger.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cun03wbc2s5nc" path="res://assets/texture/ui/menu/Frame_input_red.png" id="2_frame"]
+[ext_resource type="FontFile" uid="uid://bkikm8y3087wa" path="res://assets/font/EBGaramond-Bold.ttf" id="3_font"]
+[ext_resource type="Texture2D" uid="uid://hnsktf63rjvu" path="res://assets/texture/ui/keyprompts/Space_Key_Dark.png" id="4_space"]
+[ext_resource type="AudioStream" uid="uid://dxjibr6adoays" path="res://assets/sound/ui/UI Message Appear 01.wav" id="5_sound"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(130, 90)
+
+[node name="HintDoubleJump" type="Area2D" unique_id=890443798]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=424476527]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="Prompt" type="Control" parent="." unique_id=1110515471]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -105.0
+offset_top = -80.0
+offset_right = 105.0
+offset_bottom = -25.0
+mouse_filter = 2
+
+[node name="Background" type="NinePatchRect" parent="Prompt" unique_id=843621795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_frame")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Prompt" unique_id=184027786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="KeySpace" type="TextureRect" parent="Prompt/HBoxContainer" unique_id=312807632]
+custom_minimum_size = Vector2(50, 26)
+layout_mode = 2
+texture = ExtResource("4_space")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LabelTimes2" type="Label" parent="Prompt/HBoxContainer" unique_id=1370860625]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = " x2"
+vertical_alignment = 1
+
+[node name="LabelDoubleJump" type="Label" parent="Prompt/HBoxContainer" unique_id=201022348]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.75, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "  Doble salto"
+vertical_alignment = 1
+
+[node name="UISound" type="AudioStreamPlayer2D" parent="." unique_id=228139877]
+stream = ExtResource("5_sound")
+volume_db = -8.0

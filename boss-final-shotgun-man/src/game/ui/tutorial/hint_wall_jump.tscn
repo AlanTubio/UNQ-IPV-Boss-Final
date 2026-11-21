@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://b28o3nhok8378"]
+
+[ext_resource type="Script" uid="uid://dm03y8hrolqa1" path="res://src/game/ui/tutorial/tutorial_trigger.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cun03wbc2s5nc" path="res://assets/texture/ui/menu/Frame_input_red.png" id="2_frame"]
+[ext_resource type="FontFile" uid="uid://bkikm8y3087wa" path="res://assets/font/EBGaramond-Bold.ttf" id="3_font"]
+[ext_resource type="Texture2D" uid="uid://dja12ienr378q" path="res://assets/texture/player/weapon/slash_effect/Frames/Slash_color2_frame2.png" id="4_slash"]
+[ext_resource type="Texture2D" uid="uid://cqqm30jeeipcs" path="res://assets/texture/map/foto_pared.png" id="5_wall"]
+[ext_resource type="Texture2D" uid="uid://hnsktf63rjvu" path="res://assets/texture/ui/keyprompts/Space_Key_Dark.png" id="6_space"]
+[ext_resource type="AudioStream" uid="uid://dxjibr6adoays" path="res://assets/sound/ui/UI Message Appear 01.wav" id="7_sound"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(484, 225)
+
+[node name="HintWallJump" type="Area2D" unique_id=1225978638]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1560404399]
+position = Vector2(-72, -32.5)
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="Prompt" type="Control" parent="." unique_id=1556030412]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -135.0
+offset_top = -120.0
+offset_right = 135.0
+offset_bottom = -25.0
+mouse_filter = 2
+
+[node name="Background" type="NinePatchRect" parent="Prompt" unique_id=848677801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_frame")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Prompt" unique_id=2004760840]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="RowIcons" type="HBoxContainer" parent="Prompt/VBoxContainer" unique_id=52500167]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlashIcon" type="TextureRect" parent="Prompt/VBoxContainer/RowIcons" unique_id=1567084153]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("4_slash")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Plus" type="Label" parent="Prompt/VBoxContainer/RowIcons" unique_id=805309165]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+text = "+"
+vertical_alignment = 1
+
+[node name="WallIcon" type="TextureRect" parent="Prompt/VBoxContainer/RowIcons" unique_id=353022001]
+texture_filter = 1
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("5_wall")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Plus2" type="Label" parent="Prompt/VBoxContainer/RowIcons" unique_id=1724569371]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+text = "+"
+vertical_alignment = 1
+
+[node name="KeySpace" type="TextureRect" parent="Prompt/VBoxContainer/RowIcons" unique_id=1828883005]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+texture = ExtResource("6_space")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LabelWallJump" type="Label" parent="Prompt/VBoxContainer/RowIcons" unique_id=357128669]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.75, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 19
+text = " Wall Jump"
+vertical_alignment = 1
+
+[node name="LabelDesc" type="Label" parent="Prompt/VBoxContainer" unique_id=1743890418]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 16
+text = "Golpeá la pared con la espada y saltá 
+rapidamente para elevarte más alto"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UISound" type="AudioStreamPlayer2D" parent="." unique_id=567963681]
+stream = ExtResource("7_sound")
+volume_db = -8.0

@@ -16,7 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://cgf8nxut0nbdv" path="res://src/game/ui/VictoryMenu.tscn" id="8_sdah7"]
 [ext_resource type="PackedScene" uid="uid://87upwficjeky" path="res://src/game/entities/enemies/orcShaman/orc_shaman.tscn" id="8_tbcyw"]
 [ext_resource type="AudioStream" uid="uid://dwovd8cicnuy6" path="res://assets/sound/background/Dark 1.ogg" id="10_5e013"]
-[ext_resource type="PackedScene" uid="uid://bu3j43gipku7q" path="res://src/game/ui/controls_tutorial.tscn" id="11_tutorial"]
+[ext_resource type="PackedScene" path="res://src/game/ui/tutorial/hint_move.tscn" id="11_hint_move"]
+[ext_resource type="PackedScene" path="res://src/game/ui/tutorial/hint_jump.tscn" id="11_hint_jump"]
+[ext_resource type="PackedScene" path="res://src/game/ui/tutorial/hint_double_jump.tscn" id="11_hint_double_jump"]
+[ext_resource type="PackedScene" path="res://src/game/ui/tutorial/hint_wall_jump.tscn" id="11_hint_wall_jump"]
+[ext_resource type="PackedScene" path="res://src/game/ui/tutorial/hint_shotgun.tscn" id="11_hint_shotgun"]
 [ext_resource type="PackedScene" uid="uid://co7f3nqdhb5yr" path="res://src/game/entities/enemies/necromancer/necromancer.tscn" id="14_5rc6s"]
 [ext_resource type="AudioStream" uid="uid://1ntpkuqujb83" path="res://assets/sound/background/Action 2.ogg" id="19_d1krm"]
 
@@ -157,9 +161,22 @@ amount = 1
 extents = Vector2(30, 0)
 pathfinding = NodePath("../AstarTileMap")
 
-[node name="ControlsTutorial" parent="." unique_id=2010001010 instance=ExtResource("11_tutorial")]
-visible = false
-position = Vector2(-310, 300)
+[node name="TutorialTriggers" type="Node2D" parent="." unique_id=2010001010]
+
+[node name="HintMove" parent="TutorialTriggers" unique_id=2010001011 instance=ExtResource("11_hint_move")]
+position = Vector2(110, 850)
+
+[node name="HintJump" parent="TutorialTriggers" unique_id=2010001012 instance=ExtResource("11_hint_jump")]
+position = Vector2(460, 850)
+
+[node name="HintDoubleJump" parent="TutorialTriggers" unique_id=2010001013 instance=ExtResource("11_hint_double_jump")]
+position = Vector2(590, 700)
+
+[node name="HintWallJump" parent="TutorialTriggers" unique_id=2010001014 instance=ExtResource("11_hint_wall_jump")]
+position = Vector2(320, 480)
+
+[node name="HintShotgun" parent="TutorialTriggers" unique_id=2010001015 instance=ExtResource("11_hint_shotgun")]
+position = Vector2(320, -500)
 
 [node name="Goal" parent="." unique_id=1125136970 instance=ExtResource("5_guohj")]
 position = Vector2(333, -5613)

@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://deqcdogiji7g6"]
+
+[ext_resource type="Script" uid="uid://dm03y8hrolqa1" path="res://src/game/ui/tutorial/tutorial_trigger.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cun03wbc2s5nc" path="res://assets/texture/ui/menu/Frame_input_red.png" id="2_frame"]
+[ext_resource type="FontFile" uid="uid://bkikm8y3087wa" path="res://assets/font/EBGaramond-Bold.ttf" id="3_font"]
+[ext_resource type="Texture2D" uid="uid://du3klhn32kiai" path="res://assets/texture/ui/keyprompts/A_Key_Dark.png" id="4_a"]
+[ext_resource type="Texture2D" uid="uid://bshvrxfxs2feh" path="res://assets/texture/ui/keyprompts/D_Key_Dark.png" id="5_d"]
+[ext_resource type="Texture2D" uid="uid://b80aljmglhpx0" path="res://assets/texture/ui/keyprompts/Shift_Key_Dark.png" id="6_shift"]
+[ext_resource type="AudioStream" uid="uid://dxjibr6adoays" path="res://assets/sound/ui/UI Message Appear 01.wav" id="7_sound"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(240, 100)
+
+[node name="HintMove" type="Area2D" unique_id=373941178]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_script")
+starts_visible = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1104940380]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="Prompt" type="Control" parent="." unique_id=1994317784]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = -30.0
+mouse_filter = 2
+
+[node name="Background" type="NinePatchRect" parent="Prompt" unique_id=304688788]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_frame")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Prompt" unique_id=821897711]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="RowMove" type="HBoxContainer" parent="Prompt/VBoxContainer" unique_id=1674745393]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="KeyA" type="TextureRect" parent="Prompt/VBoxContainer/RowMove" unique_id=1769929126]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("4_a")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slash" type="Label" parent="Prompt/VBoxContainer/RowMove" unique_id=1617874171]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "/"
+vertical_alignment = 1
+
+[node name="KeyD" type="TextureRect" parent="Prompt/VBoxContainer/RowMove" unique_id=1784611146]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("5_d")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LabelMove" type="Label" parent="Prompt/VBoxContainer/RowMove" unique_id=715335777]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.75, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "  Moverse"
+vertical_alignment = 1
+
+[node name="RowDash" type="HBoxContainer" parent="Prompt/VBoxContainer" unique_id=534787779]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="KeyShift" type="TextureRect" parent="Prompt/VBoxContainer/RowDash" unique_id=2044799492]
+custom_minimum_size = Vector2(50, 26)
+layout_mode = 2
+texture = ExtResource("6_shift")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LabelDash" type="Label" parent="Prompt/VBoxContainer/RowDash" unique_id=325010798]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.75, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "  Dash"
+vertical_alignment = 1
+
+[node name="UISound" type="AudioStreamPlayer2D" parent="." unique_id=620733352]
+stream = ExtResource("7_sound")
+volume_db = -8.0
