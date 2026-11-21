@@ -165,7 +165,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f2lw"]
-size = Vector2(56.5, 54)
+size = Vector2(105.964294, 54)
 
 [node name="SwordWeapon" type="Node2D" unique_id=1922192132]
 scale = Vector2(0.7, 0.7)
@@ -191,14 +191,14 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_struk")
 hframes = 5
 vframes = 2
-frame = 4
+frame = 8
 
 [node name="CutArea" type="Area2D" parent="SwordPivot" unique_id=801427334]
-visible = false
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/CutArea" unique_id=25902780]
-position = Vector2(28, -32)
+position = Vector2(52.732132, -31.999989)
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_5f2lw")
 disabled = true
 

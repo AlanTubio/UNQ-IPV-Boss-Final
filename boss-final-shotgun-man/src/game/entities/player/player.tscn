@@ -210,7 +210,7 @@ script = ExtResource("6_jump")
 state_id = &"jump"
 
 [node name="WallTimer" type="Timer" parent="StateMachine/Jump" unique_id=65058464]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [node name="Idle" type="AudioStreamPlayer2D" parent="StateMachine/Jump" unique_id=558609474]
