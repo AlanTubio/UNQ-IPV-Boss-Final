@@ -11,6 +11,8 @@ var can_wall_jump: bool = false
 var has_used_wall_jump: bool = false
 var resume_after_dash: bool = false
 
+var _wall_jump_tween: Tween
+
 
 func enter() -> void:
 	jump_sound.play()
@@ -53,6 +55,7 @@ func handle_input(event: InputEvent) -> void:
 				wall_timer.stop()
 			character.velocity.y = - character.jump_speed
 			character._play_animation(&"jump")
+			_stop_wall_jump_feedback()
 		elif jumps < jumps_limit:
 			jump_sound.play()
 			jumps += 1
@@ -92,6 +95,7 @@ func handle_event(event: StringName, ...values: Array) -> void:
 				if push_dir == 0:
 					push_dir = -1.0
 				character.apply_knockback(Vector2(push_dir, 0.0), 800.0)
+				_start_wall_jump_feedback()
 		&"hit", &"healed":
 			character.sum_hp(values.front())
 		&"hp_changed":
@@ -105,3 +109,24 @@ func _on_animation_finished(_anim_name: StringName) -> void:
 
 func _on_wall_timer_timeout() -> void:
 	can_wall_jump = false
+	_stop_wall_jump_feedback()
+
+
+func _start_wall_jump_feedback() -> void:
+	if _wall_jump_tween:
+		_wall_jump_tween.kill()
+	character.body_pivot.modulate = Color.BLACK
+	_wall_jump_tween = character.create_tween()
+	_wall_jump_tween.tween_property(
+		character.body_pivot,
+		"modulate",
+		Color.WHITE,
+		wall_timer.wait_time
+	)
+
+
+func _stop_wall_jump_feedback() -> void:
+	if _wall_jump_tween:
+		_wall_jump_tween.kill()
+		_wall_jump_tween = null
+	character.body_pivot.modulate = Color.WHITE

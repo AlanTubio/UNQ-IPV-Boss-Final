@@ -10,6 +10,7 @@ extends PlayerState
 @export var dash_cooldown_color: Color
 
 var dash_timer: Timer
+var _dash_tween: Tween
 
 
 func _ready() -> void:
@@ -37,10 +38,12 @@ func enter() -> void:
         character._play_animation(&"dash")
         dash_cooldown_timer.start(dash_cooldown)
         set_process(true)
+        _start_dash_feedback()
 
 
 func exit() -> void:
     dash_timer.stop()
+    _stop_dash_feedback()
 
 
 func update(delta: float) -> void:
@@ -76,3 +79,25 @@ func handle_input(_event: InputEvent) -> void:
 
 func _on_animation_finished(_anim_name: StringName) -> void:
     return
+
+
+func _start_dash_feedback() -> void:
+    if _dash_tween:
+        _dash_tween.kill()
+    character.body_pivot.modulate = Color.BLACK
+    _dash_tween = character.create_tween()
+    _dash_tween.set_trans(Tween.TRANS_EXPO)
+    _dash_tween.set_ease(Tween.EASE_OUT)
+    _dash_tween.tween_property(
+        character.body_pivot,
+        "modulate",
+        Color.WHITE,
+        dash_time
+    )
+
+
+func _stop_dash_feedback() -> void:
+    if _dash_tween:
+        _dash_tween.kill()
+        _dash_tween = null
+    character.body_pivot.modulate = Color.WHITE
