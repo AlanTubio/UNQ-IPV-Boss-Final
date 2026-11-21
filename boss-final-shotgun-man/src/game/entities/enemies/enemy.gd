@@ -78,7 +78,18 @@ func _look_at_target() -> void:
 func notify_hit(amount: int = 1) -> void:
 	if amount < 0:
 		hit_sound.play()
+		_flash_white()
 	hit.emit(amount)
+
+
+func _flash_white() -> void:
+	var tween: Tween = create_tween()
+	body.material = null  # asegura que no haya material previo interfiriendo
+	tween.tween_property(body, "modulate", Color.WHITE, 0.0)
+	tween.tween_property(body, "modulate", Color(10, 10, 10, 1), 0.05)
+	tween.tween_property(body, "modulate", Color.WHITE, 0.05)
+	tween.tween_property(body, "modulate", Color(10, 10, 10, 1), 0.05)
+	tween.tween_property(body, "modulate", Color.WHITE, 0.05)
 
 
 func _sum_hp(amount: int) -> void:
