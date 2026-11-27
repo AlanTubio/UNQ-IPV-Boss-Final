@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://83f008uty4g6" path="res://src/game/ui/GUIManager.gd" id="1_tvs00"]
 [ext_resource type="Texture2D" uid="uid://db1ybbhll6mxp" path="res://assets/texture/ui/heart/hearts.png" id="2_byo0w"]
+[ext_resource type="FontFile" uid="uid://4i3kmdckaj04" path="res://assets/font/HelpMe.ttf" id="3_85cfu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ud5j"]
 atlas = ExtResource("2_byo0w")
@@ -38,3 +39,17 @@ offset_bottom = 16.0
 max_value = 1.0
 texture_under = SubResource("AtlasTexture_5ud5j")
 texture_progress = SubResource("AtlasTexture_65jlj")
+
+[node name="Timer" type="Timer" parent="." unique_id=1441030499]
+autostart = true
+
+[node name="Time" type="Label" parent="." unique_id=1826854260]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 2.0
+offset_right = 284.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("3_85cfu")
+text = "00:00"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
