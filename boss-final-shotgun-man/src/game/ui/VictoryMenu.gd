@@ -8,6 +8,7 @@ signal return_selected()
 
 @onready var audioBGM = $AudioStreamPlayer
 @onready var audioHover = $AudioHover
+@onready var time_label: Label = $Panel/Time
 
 
 func _ready() -> void:
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 func _on_level_won() -> void:
 	audioBGM.play()
+	time_label.text = "Time: " + GameState.final_time
 	show_custom()
 
 

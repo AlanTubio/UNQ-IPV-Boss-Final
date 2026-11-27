@@ -118,14 +118,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rsbas")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = 10.0
+offset_left = 6.0
 offset_top = 17.0
-offset_right = -10.0
+offset_right = -2.0
 offset_bottom = 38.0
 theme_override_fonts/font = ExtResource("4")
 text = "to be continued"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Time" type="Label" parent="Panel" unique_id=706987765]
+layout_mode = 0
+offset_left = 34.0
+offset_top = -10.0
+offset_right = 125.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("4")
+text = "TIME: 00:00"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=262482370]
 layout_mode = 1

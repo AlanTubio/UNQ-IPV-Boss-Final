@@ -43,3 +43,4 @@ func _on_timer_timeout() -> void:
 
 func _on_level_won() -> void:
 	timer.stop()
+	GameState.final_time = time_label.text

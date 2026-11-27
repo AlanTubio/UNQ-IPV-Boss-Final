@@ -15,6 +15,7 @@ extends Node
 signal current_player_changed(player)
 
 var current_player: Player
+var final_time: String = "00:00"
 
 func set_current_player(player: Player) -> void:
 	current_player = player
